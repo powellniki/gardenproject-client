@@ -29,8 +29,7 @@ function Home() {
 
     return (
       <main className='text-slate-900 p-4'>
-        <h1 className='text-4xl mb-4'>Welcome to Rooted</h1>
-        <h3 className='text-2xl mb-6'>The Virtual Garden Club</h3>
+        {/* <img src=""/> */}
         <div className="flex justify-between items-center mb-4">
             <div className="flex-1"></div>
             <Filter onFilterChange={handleFilterChange}/>

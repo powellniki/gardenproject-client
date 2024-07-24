@@ -4,20 +4,23 @@ import "./NavBar.css"
 export const NavBar = () => {
     const navigate = useNavigate()
     return (
-        <ul className="navbar pb-10">
-            <li className="navbar__item pl-10">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/allrocks"}>nav 1</NavLink>
+        <ul className="navbar p-5">
+            <div>
+                
+            </div>
+            <li className="navbar__item">
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/allrocks"}>Community</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/create"}>nav 2</NavLink>
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/create"}>Marketplace</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/mine"}>nav 3</NavLink>
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/mine"}>Profile</NavLink>
             </li>
             {
                 (localStorage.getItem("token") !== null) ?
                     <li className="navbar__item">
-                        <button className="underline text-blue-600 hover:text-purple-700"
+                        <button className="text-gray-600 hover:text-gray-700"
                             onClick={() => {
                                 localStorage.removeItem("token")
                                 navigate('/login')
@@ -26,10 +29,10 @@ export const NavBar = () => {
                     </li> :
                     <>
                         <li className="navbar__item">
-                            <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/login"}>Login</NavLink>
+                            <NavLink className="text-gray-600 hover:text-gray-700" to={"/login"}>Login</NavLink>
                         </li>
                         <li className="navbar__item">
-                            <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/register"}>Register</NavLink>
+                            <NavLink className="text-gray-600 hover:text-gray-700" to={"/register"}>Register</NavLink>
                         </li>
                     </>
             }        </ul>
