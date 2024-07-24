@@ -5,7 +5,7 @@ export const PostListObject = ({post}) => {
 
 
     return (
-        <Link>
+        <Link to={`posts/${post.id}`}>
             <section className="border border-gray-300 rounded-lg p-4 mb-4 bg-white hover:bg-gray-50 transition duration-300">
                 <div>
                     <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
