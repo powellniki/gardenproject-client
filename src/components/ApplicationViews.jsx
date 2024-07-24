@@ -5,6 +5,7 @@ import { Login } from "../pages/Login.jsx"
 import Home from "../pages/Home"
 import { Register } from '../pages/Register.jsx'
 import { PostDetails } from '../pages/PostDetails.jsx'
+import { DiscussionTopics } from '../pages/DiscussionTopics.jsx'
 
 
 export const ApplicationViews = () => {
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
                 <Route path="posts">
                     <Route path=":postId" element={<PostDetails />} />
                 </Route>
+                <Route path="discussiontopics" element={<DiscussionTopics />}/>
             </Route>
         </Routes>
     </BrowserRouter>
