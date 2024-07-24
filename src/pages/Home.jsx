@@ -3,6 +3,7 @@ import { getPosts } from "../data/posts.jsx"
 import { getTopics } from "../data/topics.jsx"
 import { Link } from "react-router-dom"
 import { PostListObject } from "../components/PostListObject.jsx"
+import { Filter } from "../components/Filter.jsx"
 
 
 
@@ -11,19 +12,20 @@ function Home() {
     const [posts, setPosts] = useState([])
     const [topics, setTopics] = useState([])
 
+    const fetchFilteredPosts = (filter) => {
+        getPosts(filter).then(setPosts).catch(error => console.error('Failed to load posts', error));
+    }
 
     useEffect(() => {
-        Promise.all([getPosts(), getTopics()])
-            .then(([postsData, topicsData]) => {
-                setPosts(postsData);
-                setTopics(topicsData);
-            })
-            .catch(error => {
-                console.error('Failed to load data', error);
-                // Handle any error that occurs during any request
-            });
+        fetchFilteredPosts('');
+        getTopics()
+            .then(setTopics)
+            .catch(error => console.error('Failed to load topics', error));
     }, []);
 
+    const handleFilterChange = (event) => {
+        fetchFilteredPosts(event.target.value);
+    };
 
     return (
       <main className='text-slate-900 p-4'>
@@ -31,15 +33,16 @@ function Home() {
         <h3 className='text-2xl mb-6'>The Virtual Garden Club</h3>
         <div className="flex justify-between items-center mb-4">
             <div className="flex-1"></div>
+            <Filter onFilterChange={handleFilterChange}/>
             <button className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300">
             START A DISCUSSION
             </button>
         </div>
         <div className="flex flex-row">
-            <div className="w-1/5 p-4 bg-gray-100">
+            <div className="w-1/5 p-4 mt-4 bg-gray-100 rounded-lg shadow self-start">
                 <h3 className="text-xl mb-4">Discussion Board Topics</h3>
                 {topics.map(topic => {
-                    return <div className="mb-2" key={topic.name}>{topic.name}</div>
+                    return <div className="mb-2 p-1 text-sm" key={topic.name}>{topic.name}</div>
                 })}
             </div>
             <div className="w-4/5 p-4">
