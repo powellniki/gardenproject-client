@@ -6,7 +6,7 @@ export const Authorized = () => {
   if (localStorage.getItem("token")) {
     return <>
       <NavBar />
-      <main className="p-4">
+      <main className="">
         <Outlet />
       </main>
     </>
