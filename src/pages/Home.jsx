@@ -29,6 +29,12 @@ function Home() {
       <main className='text-slate-900 p-4'>
         <h1 className='text-4xl mb-4'>Welcome to Rooted</h1>
         <h3 className='text-2xl mb-6'>The Virtual Garden Club</h3>
+        <div className="flex justify-between items-center mb-4">
+            <div className="flex-1"></div>
+            <button className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300">
+            START A DISCUSSION
+            </button>
+        </div>
         <div className="flex flex-row">
             <div className="w-1/5 p-4 bg-gray-100">
                 <h3 className="text-xl mb-4">Discussion Board Topics</h3>
