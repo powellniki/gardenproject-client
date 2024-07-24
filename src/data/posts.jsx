@@ -39,3 +39,23 @@ export const getPostByPostId = async (postId) => {
         throw error;
     }
 }
+
+
+export const getPostByTopicId = async (topicId) => {
+    const url = `${API_URL}/posts?topic=${topicId}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch posts');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+        throw error;
+    }
+}

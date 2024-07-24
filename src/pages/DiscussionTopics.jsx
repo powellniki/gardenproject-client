@@ -17,7 +17,11 @@ export const DiscussionTopics = () => {
             <h1 className="text-4xl font-semibold mb-8">Discussion Topics</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {topics.map(topic => {
-                    return <Link to={`/discussion/topics/${topic.id}`} key={topic.id} className="flex justify-center items-center bg-gray-100 p-4 rounded shadow hover:bg-gray-200 transition duration-300">
+                    return <Link 
+                                to={`/discussion/topics/${topic.id}`} 
+                                key={topic.id} 
+                                state={{ topicName: topic.name }}
+                                className="flex justify-center items-center bg-gray-100 p-4 rounded shadow hover:bg-gray-200 transition duration-300">
                             {topic.name}
                         </Link>
                 })}
