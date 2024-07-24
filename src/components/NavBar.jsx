@@ -9,13 +9,13 @@ export const NavBar = () => {
                 
             </div>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/allrocks"}>Community</NavLink>
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/discussion/topics"}>Discussion Boards</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/create"}>Marketplace</NavLink>
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/"}>Marketplace</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/mine"}>Profile</NavLink>
+                <NavLink className="text-gray-600 hover:text-gray-700" to={"/"}>My Profile</NavLink>
             </li>
             {
                 (localStorage.getItem("token") !== null) ?

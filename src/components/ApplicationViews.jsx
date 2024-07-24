@@ -5,6 +5,8 @@ import { Login } from "../pages/Login.jsx"
 import Home from "../pages/Home"
 import { Register } from '../pages/Register.jsx'
 import { PostDetails } from '../pages/PostDetails.jsx'
+import { DiscussionTopics } from '../pages/DiscussionTopics.jsx'
+import { DiscussionBoard } from '../pages/DiscussionBoard.jsx'
 
 
 export const ApplicationViews = () => {
@@ -18,6 +20,10 @@ export const ApplicationViews = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="posts">
                     <Route path=":postId" element={<PostDetails />} />
+                </Route>
+                <Route path="discussion">
+                    <Route path="topics" element={<DiscussionTopics />}/>
+                    <Route path="topics/:topicId" element={<DiscussionBoard />}/>
                 </Route>
             </Route>
         </Routes>

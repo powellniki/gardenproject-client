@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getPosts } from "../data/posts.jsx"
 import { getTopics } from "../data/topics.jsx"
-import { Link } from "react-router-dom"
 import { PostListObject } from "../components/PostListObject.jsx"
 import { Filter } from "../components/Filter.jsx"
 
