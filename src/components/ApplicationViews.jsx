@@ -32,7 +32,7 @@ export const ApplicationViews = () => {
                 <Route path="discussion">
                     <Route path="topics" element={<DiscussionTopics />} />
                     <Route path="topics/:topicId" element={<DiscussionBoard />} />
-                    <Route path="new" element={<NewDiscussionForm />} currentUser={currentUser}/>
+                    <Route path="new" element={<NewDiscussionForm currentUser={currentUser}/>} />
                 </Route>
             </Route>
         </Routes>
