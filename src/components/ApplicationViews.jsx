@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Authorized } from "./Authorized"
 import { Login } from "../pages/Login.jsx"
@@ -10,6 +10,13 @@ import { DiscussionBoard } from '../pages/DiscussionBoard.jsx'
 
 
 export const ApplicationViews = () => {
+    const [currentUser, setCurrentUser] = useState({})
+
+    useEffect(() => {
+        const localUser = localStorage.getItem("token") 
+        const localUserObject = JSON.parse(localUser)
+        setCurrentUser(localUserObject)
+    }, [])
 
 
     return <BrowserRouter>
