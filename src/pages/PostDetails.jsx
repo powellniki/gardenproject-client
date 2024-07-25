@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { deletePost, getPostByPostId } from "../data/posts.jsx"
-import { getCommentsByPostId } from "../data/comments.jsx"
+import { createComment, getCommentsByPostId } from "../data/comments.jsx"
 
 export const PostDetails = ({currentUser}) => {
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
     const [input, setInput] = useState("")
+    const [update, setUpdate] = useState(false)
     
     const { postId } = useParams()
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ export const PostDetails = ({currentUser}) => {
     useEffect(() => {
         getPost() 
         getComments()
-    },[postId])
+    },[postId, update])
 
 
     const handleDelete = (postId) => {
@@ -35,8 +36,24 @@ export const PostDetails = ({currentUser}) => {
         })
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!currentUser || !currentUser.id) {
+            console.error("Current user is not defined!");
+            return;
+        }
+
+        const newComment = {
+            comment: input,
+            gardener: currentUser.id,
+            post_id: postId
+        }
+
+        createComment(newComment)
+            .then(() => {
+                setInput(""),
+                setUpdate(!update) 
+            })
     }
 
 

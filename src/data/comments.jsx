@@ -20,6 +20,24 @@ export const getCommentsByPostId = async (postId) => {
 }
 
 
-export const createComment = async () => {
-    
+export const createComment = async (comment) => {
+    const url = `${API_URL}/comments`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify(comment)
+        });
+        const data = await response.json()
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to create comment');
+        }
+    } catch (error) {
+        console.error("Failed to submit comment:", error);
+        throw error;
+    }
 }
