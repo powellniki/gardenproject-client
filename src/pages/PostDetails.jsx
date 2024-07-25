@@ -35,6 +35,10 @@ export const PostDetails = ({currentUser}) => {
         })
     }
 
+    const handleSubmit = () => {
+        
+    }
+
 
     return (
         <section className="border border-gray-300 rounded-lg p-12 m-4 bg-white shadow">
@@ -71,9 +75,9 @@ export const PostDetails = ({currentUser}) => {
                     )
                 })}
                 <div className="mt-4">
-                    <input className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Add a comment..."/>
+                    <textarea type="text" id="comment" name="comment" value={input} onChange={e => setInput(e.target.value)} className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Add a comment..."></textarea>
                     <div className="flex justify-end">
-                        <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
+                        <button onClick={handleSubmit} className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
                             + COMMENT
                         </button>
                     </div>

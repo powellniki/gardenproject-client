@@ -18,3 +18,8 @@ export const getCommentsByPostId = async (postId) => {
         throw error;
     }
 }
+
+
+export const createComment = async () => {
+    
+}
