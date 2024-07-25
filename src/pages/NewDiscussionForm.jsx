@@ -58,11 +58,14 @@ export const NewDiscussionForm = ({currentUser}) => {
                 <fieldset>
                     <div>
                         <label htmlFor="title" className="block text-lg font-medium text-gray-700 mb-2">Title:</label>
-                        <input 
-                            id="title" 
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
                             value={titleInput} 
                             onChange={e => setTitleInput(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded"
+                            required
                         />
                     </div>
                 </fieldset>
@@ -78,6 +81,7 @@ export const NewDiscussionForm = ({currentUser}) => {
                             value={contentInput} 
                             onChange={e => setContentInput(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded h-52"
+                            required
                         />
                     </div>
                 </fieldset>

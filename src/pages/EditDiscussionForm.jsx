@@ -60,53 +60,59 @@ export const EditDiscussionForm = ({currentUser}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-        <h1>Edit Discussion</h1>
+        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+            <h1 className="text-4xl font-semibold mb-6">Edit Discussion</h1>
 
-        <fieldset>
-            <div>
-                <label htmlFor="title">Title:</label>
-                <input
-                    id="title"
-                    value={titleInput}
-                    onChange={e => setTitleInput(e.target.value)}
-                    required
-                />
-            </div>
-        </fieldset>
+            <fieldset>
+                <div>
+                    <label htmlFor="title" className="block text-lg font-medium text-gray-700 mb-2">Title:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={titleInput}
+                        onChange={e => setTitleInput(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded"
+                        required
+                    />
+                </div>
+            </fieldset>
 
-        <fieldset>
-            <div>
-                <label htmlFor="content">Content:</label>
-                <textarea
-                    id="content"
-                    value={contentInput}
-                    onChange={e => setContentInput(e.target.value)}
-                    required
-                />
-            </div>
-        </fieldset>
+            <fieldset>
+                <div>
+                    <label htmlFor="content" className="block text-lg font-medium text-gray-700 mb-2">Content:</label>
+                    <textarea
+                        type="text"
+                        id="content"
+                        name="description"
+                        value={contentInput}
+                        onChange={e => setContentInput(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded h-52"
+                        required
+                    />
+                </div>
+            </fieldset>
 
-        <fieldset>
-            <label>Topics:</label>
-            <select id="topics" onChange={handleTopicSelect} value="0">
-                <option disabled value="0">Add a Topic...</option>
-                {topics.map(topic => (
-                    <option key={topic.id} value={topic.id}>{topic.name}</option>
-                ))}
-            </select>
-            <div>
-                {selectedTopics.map(topic => (
-                    <span key={topic.id} className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-2">
-                        <button type="button" onClick={() => removeTopic(topic.id)}>
-                            x {topic.name}
-                        </button>
-                    </span>
-                ))}
-            </div>
-        </fieldset>
+            <fieldset>
+                <label htmlFor="topics" className="block text-lg font-medium text-gray-700 mb-2">Topics:</label>
+                <select id="topics" onChange={handleTopicSelect} className="w-full p-2 border border-gray-300 rounded mb-4">
+                    <option value="0" id="topic">Add a Topic...</option>
+                    {topics.map(topic => (
+                        <option key={topic.id} value={topic.id}>{topic.name}</option>
+                    ))}
+                </select>
+                <div>
+                    {selectedTopics.map(topic => (
+                        <span key={topic.id} className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-2">
+                            <button type="button" onClick={() => removeTopic(topic.id)}>
+                                x {topic.name}
+                            </button>
+                        </span>
+                    ))}
+                </div>
+            </fieldset>
 
-        <button type="submit">Save Changes</button>
+        <button type="submit" className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">Save Changes</button>
     </form>
     )
 }
