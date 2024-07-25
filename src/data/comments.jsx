@@ -41,3 +41,30 @@ export const createComment = async (comment) => {
         throw error;
     }
 }
+
+
+export const editComment = async (updatedComment) => {
+    const url = `${API_URL}/comments/${updatedComment.id}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify(updatedPost)
+        });
+        if (!response.ok) {
+            throw Error(response.status);
+        } 
+        return response
+    } catch (error) {
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(err.message);
+          }
+    }
+}
