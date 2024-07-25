@@ -45,7 +45,10 @@ export const PostDetails = ({currentUser}) => {
                 })}
             </div>
             <div>
-                {currentUser.id === post.gardener?.userId ? <button>EDIT</button> : "" }
+                {currentUser.id === post.gardener?.userId ? <div className="flex space-x-4 mb-8">
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">EDIT</button>
+                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
+                    </div> : "" }
             </div>
             <div>
                 <h3 className="text-xl font-semibold mb-2">Comments:</h3>
