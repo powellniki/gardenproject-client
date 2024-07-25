@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { getPostByPostId } from "../data/posts.jsx"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { deletePost, getPostByPostId } from "../data/posts.jsx"
 import { getCommentsByPostId } from "../data/comments.jsx"
 
 export const PostDetails = ({currentUser}) => {
@@ -9,6 +9,7 @@ export const PostDetails = ({currentUser}) => {
     const [input, setInput] = useState("")
     
     const { postId } = useParams()
+    const navigate = useNavigate()
 
 
     const getPost = () => {
@@ -28,6 +29,12 @@ export const PostDetails = ({currentUser}) => {
     },[postId])
 
 
+    const handleDelete = (postId) => {
+        deletePost(postId).then(() => {
+            navigate('/')
+        })
+    }
+
 
     return (
         <section className="border border-gray-300 rounded-lg p-12 m-4 bg-white shadow">
@@ -46,8 +53,10 @@ export const PostDetails = ({currentUser}) => {
             </div>
             <div>
                 {currentUser.id === post.gardener?.userId ? <div className="flex space-x-4 mb-8">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">EDIT</button>
-                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
+                    <Link to={`/posts/${post.id}/edit`}>
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">EDIT</button>
+                    </Link>
+                    <button onClick={() => {handleDelete(post.id)}} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
                     </div> : "" }
             </div>
             <div>

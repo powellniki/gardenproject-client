@@ -8,6 +8,7 @@ import { PostDetails } from '../pages/PostDetails.jsx'
 import { DiscussionTopics } from '../pages/DiscussionTopics.jsx'
 import { DiscussionBoard } from '../pages/DiscussionBoard.jsx'
 import { NewDiscussionForm } from '../pages/NewDiscussionForm.jsx'
+import { EditDiscussionForm } from '../pages/EditDiscussionForm.jsx'
 
 
 export const ApplicationViews = () => {
@@ -28,11 +29,12 @@ export const ApplicationViews = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="posts">
                     <Route path=":postId" element={<PostDetails currentUser={currentUser}/>} />
+                    <Route path="new" element={<NewDiscussionForm currentUser={currentUser}/>} />
+                    <Route path=":postId/edit" element={<EditDiscussionForm currentUser={currentUser}/>} />
                 </Route>
                 <Route path="discussion">
                     <Route path="topics" element={<DiscussionTopics />} />
                     <Route path="topics/:topicId" element={<DiscussionBoard />} />
-                    <Route path="new" element={<NewDiscussionForm currentUser={currentUser}/>} />
                 </Route>
             </Route>
         </Routes>

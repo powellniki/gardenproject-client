@@ -84,8 +84,8 @@ export const createPost = async (newPost) => {
 }
 
 
-export const editPost = async (post, postId) => {
-    const url = `${API_URL}/posts/${postId}`
+export const editPost = async (updatedPost) => {
+    const url = `${API_URL}/posts/${updatedPost.id}`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token;
         const response = await fetch(url, {
@@ -94,14 +94,43 @@ export const editPost = async (post, postId) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify(updatedPost)
         });
-        const data = await response.json()
         if (!response.ok) {
-            throw new Error(data.message || 'Failed to edit post');
-        }
+            throw Error(response.status);
+        } 
+        return response
     } catch (error) {
-        console.error("Failed to submit edited post:", error);
-        throw error;
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(err.message);
+          }
+    }
+}
+
+
+export const deletePost = async (postId) => {
+    const url = `${API_URL}/posts/${postId}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw Error(response.status);
+        } 
+        return response
+    } catch (error) {
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(err.message);
+          }
     }
 }

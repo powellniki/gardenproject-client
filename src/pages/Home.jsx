@@ -36,7 +36,7 @@ function Home() {
             <Filter onFilterChange={handleFilterChange}/>
             <button 
                 className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
-                onClick={() => {navigate('/discussion/new')}}>
+                onClick={() => {navigate('/posts/new')}}>
             START A DISCUSSION
             </button>
         </div>

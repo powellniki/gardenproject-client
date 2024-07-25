@@ -48,7 +48,7 @@ export const NewDiscussionForm = ({currentUser}) => {
         createPost(newPost).then(() => {
             navigate('/')
         })
-    };
+    }
 
     return (
         <form>
