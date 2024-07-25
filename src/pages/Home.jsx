@@ -37,7 +37,7 @@ function Home() {
             <button 
                 className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
                 onClick={() => {navigate('/posts/new')}}>
-            START A DISCUSSION
+            SPROUT A CONVERSATION
             </button>
         </div>
         <div className="flex flex-row">
