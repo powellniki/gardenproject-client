@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { getPostByPostId } from "../data/posts.jsx"
 import { getCommentsByPostId } from "../data/comments.jsx"
 
-export const PostDetails = () => {
+export const PostDetails = ({currentUser}) => {
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
     const [input, setInput] = useState("")
@@ -25,7 +25,7 @@ export const PostDetails = () => {
     useEffect(() => {
         getPost() 
         getComments()
-    },[])
+    },[postId])
 
 
 
@@ -43,6 +43,9 @@ export const PostDetails = () => {
                 {post.topics?.map(topic => {
                     return <span className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-8" key={topic.id}>{topic.name}</span>
                 })}
+            </div>
+            <div>
+                {currentUser.id === post.gardener?.userId ? <button>EDIT</button> : "" }
             </div>
             <div>
                 <h3 className="text-xl font-semibold mb-2">Comments:</h3>

@@ -27,7 +27,7 @@ export const ApplicationViews = () => {
             <Route element={<Authorized />}>
                 <Route path="/" element={<Home />} />
                 <Route path="posts">
-                    <Route path=":postId" element={<PostDetails />} />
+                    <Route path=":postId" element={<PostDetails currentUser={currentUser}/>} />
                 </Route>
                 <Route path="discussion">
                     <Route path="topics" element={<DiscussionTopics />} />
