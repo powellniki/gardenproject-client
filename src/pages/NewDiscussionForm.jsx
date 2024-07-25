@@ -51,27 +51,40 @@ export const NewDiscussionForm = ({currentUser}) => {
     }
 
     return (
-        <form>
-            <h1>Start a New Discussion</h1>
-            <div>
+        <form className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+            <h1 className="text-4xl font-semibold mb-6">Start a New Discussion</h1>
+            <div className="space-y-6">
 
                 <fieldset>
                     <div>
-                        <h4>Title:</h4>
-                        <input id="title" value={titleInput} onChange={e => setTitleInput(e.target.value)}></input>
+                        <label htmlFor="title" className="block text-lg font-medium text-gray-700 mb-2">Title:</label>
+                        <input 
+                            id="title" 
+                            value={titleInput} 
+                            onChange={e => setTitleInput(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded"
+                        />
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <div>
-                        <h4>Content:</h4>
-                        <textarea type="text" id="content" name="description" placeholder="Write your post here..." value={contentInput} onChange={e => setContentInput(e.target.value)}></textarea>
+                        <label htmlFor="content" className="block text-lg font-medium text-gray-700 mb-2">Content:</label>
+                        <textarea 
+                            type="text" 
+                            id="content" 
+                            name="description" 
+                            placeholder="Write your post here..." 
+                            value={contentInput} 
+                            onChange={e => setContentInput(e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded h-52"
+                        />
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <h4>Topics:</h4>
-                    <select id="topics" onChange={handleTopicSelect}>
+                    <label htmlFor="topics" className="block text-lg font-medium text-gray-700 mb-2">Topics:</label>
+                    <select id="topics" onChange={handleTopicSelect} className="w-full p-2 border border-gray-300 rounded mb-4">
                         <option value="0" id="topic">Add a Topic...</option>
                             {topics.map(topic => {
                                 return <option key={topic.id} value={topic.id}>{topic.name}</option>
@@ -90,14 +103,18 @@ export const NewDiscussionForm = ({currentUser}) => {
 
                 <fieldset>
                     <div>
-                        {/* <h4>Images:</h4> */}
+                        {/* <label>Images:</label> */}
                         {/* ADD AFTER MVP */}
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <div>
-                        <button onClick={handleSubmit}>Submit</button>
+                        <button 
+                            onClick={handleSubmit}
+                            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
+                            Submit
+                        </button>
                     </div>
                 </fieldset>
 

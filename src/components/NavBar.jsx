@@ -9,18 +9,18 @@ export const NavBar = () => {
                 
             </div>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/discussion/topics"}>Discussion Boards</NavLink>
+                <NavLink className="text-green-300 hover:text-green-100" to={"/discussion/topics"}>Discussion Boards</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/"}>Marketplace</NavLink>
+                <NavLink className="text-green-300 hover:text-green-100" to={"/"}>Marketplace</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-gray-600 hover:text-gray-700" to={"/"}>My Profile</NavLink>
+                <NavLink className="text-green-300 hover:text-green-100" to={"/"}>My Profile</NavLink>
             </li>
             {
                 (localStorage.getItem("token") !== null) ?
                     <li className="navbar__item">
-                        <button className="text-gray-600 hover:text-gray-700"
+                        <button className="text-green-300 hover:text-green-100"
                             onClick={() => {
                                 localStorage.removeItem("token")
                                 navigate('/login')
@@ -29,10 +29,10 @@ export const NavBar = () => {
                     </li> :
                     <>
                         <li className="navbar__item">
-                            <NavLink className="text-gray-600 hover:text-gray-700" to={"/login"}>Login</NavLink>
+                            <NavLink className="text-green-300 hover:text-green-100" to={"/login"}>Login</NavLink>
                         </li>
                         <li className="navbar__item">
-                            <NavLink className="text-gray-600 hover:text-gray-700" to={"/register"}>Register</NavLink>
+                            <NavLink className="text-green-300 hover:text-green-100" to={"/register"}>Register</NavLink>
                         </li>
                     </>
             }        </ul>
