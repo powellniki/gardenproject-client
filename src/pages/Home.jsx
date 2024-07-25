@@ -3,6 +3,7 @@ import { getPosts } from "../data/posts.jsx"
 import { getTopics } from "../data/topics.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
 import { Filter } from "../components/Filter.jsx"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -10,6 +11,7 @@ import { Filter } from "../components/Filter.jsx"
 function Home() {
     const [posts, setPosts] = useState([])
     const [topics, setTopics] = useState([])
+    const navigate = useNavigate()
 
     const fetchFilteredPosts = (filter) => {
         getPosts(filter).then(setPosts).catch(error => console.error('Failed to load posts', error));
@@ -32,8 +34,10 @@ function Home() {
         <div className="flex justify-between items-center mb-4">
             <div className="flex-1"></div>
             <Filter onFilterChange={handleFilterChange}/>
-            <button className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300">
-            START A DISCUSSION
+            <button 
+                className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
+                onClick={() => {navigate('/posts/new')}}>
+            SPROUT A CONVERSATION
             </button>
         </div>
         <div className="flex flex-row">

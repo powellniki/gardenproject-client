@@ -59,3 +59,78 @@ export const getPostByTopicId = async (topicId) => {
         throw error;
     }
 }
+
+
+export const createPost = async (newPost) => {
+    const url = `${API_URL}/posts`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify(newPost)
+        });
+        const data = await response.json()
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to create post');
+        }
+    } catch (error) {
+        console.error("Failed to submit post:", error);
+        throw error;
+    }
+}
+
+
+export const editPost = async (updatedPost) => {
+    const url = `${API_URL}/posts/${updatedPost.id}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify(updatedPost)
+        });
+        if (!response.ok) {
+            throw Error(response.status);
+        } 
+        return response
+    } catch (error) {
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(err.message);
+          }
+    }
+}
+
+
+export const deletePost = async (postId) => {
+    const url = `${API_URL}/posts/${postId}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw Error(response.status);
+        } 
+        return response
+    } catch (error) {
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(err.message);
+          }
+    }
+}
