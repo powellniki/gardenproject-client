@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { deletePost, getPostByPostId } from "../data/posts.jsx"
-import { createComment, getCommentsByPostId } from "../data/comments.jsx"
+import { createComment, deleteComment, getCommentsByPostId } from "../data/comments.jsx"
 
 export const PostDetails = ({currentUser}) => {
     const [post, setPost] = useState([])
@@ -30,24 +30,22 @@ export const PostDetails = ({currentUser}) => {
     },[postId, update])
 
 
-    const handleDelete = (postId) => {
+    const handleDeletePost = (postId) => {
         deletePost(postId).then(() => {
             navigate('/')
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmitComment = (e) => {
         e.preventDefault();
         if (!currentUser || !currentUser.id) {
-            console.error("Current user is not defined!");
-            return;
-        }
+            console.error("Current user is not defined")
+            return}
 
         const newComment = {
             comment: input,
             gardener: currentUser.id,
-            post_id: postId
-        }
+            post_id: postId}
 
         createComment(newComment)
             .then(() => {
@@ -56,10 +54,16 @@ export const PostDetails = ({currentUser}) => {
             })
     }
 
+    const handleDeleteComment = (commentId) => {
+        deleteComment(commentId).then(() => {
+            setUpdate(!update) 
+        })
+    }
+
 
     return (
         <section className="border border-gray-300 rounded-lg p-12 m-4 bg-white shadow">
-            <h1 className="text-4xl font-semibold mb-8">{post.title}</h1>
+            <h1 className="text-5xl font-semibold mb-8">{post.title}</h1>
             <div className="text-sm text-gray-500 flex justify-between mb-4">
                 <h3 className="text-lg">@{post.gardener?.username}</h3>
                 <p>{new Date(post.created_date).toLocaleDateString()}</p>
@@ -73,11 +77,11 @@ export const PostDetails = ({currentUser}) => {
                 })}
             </div>
             <div>
-                {currentUser.id === post.gardener?.userId ? <div className="flex space-x-4 mb-8">
+                {currentUser.id === post.gardener?.userId ? <div className="flex justify-end space-x-1 mb-4">
                     <Link to={`/posts/${post.id}/edit`}>
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">EDIT</button>
+                        <button className="bg-blue-500 text-white text-xs px-4 py-2 rounded hover:bg-blue-600 transition duration-300 w-20">EDIT</button>
                     </Link>
-                    <button onClick={() => {handleDelete(post.id)}} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
+                    <button onClick={() => {handleDeletePost(post.id)}} className="bg-red-500 text-white text-xs px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
                     </div> : "" }
             </div>
             <div>
@@ -88,13 +92,17 @@ export const PostDetails = ({currentUser}) => {
                             <p className="text-sm font-semibold text-gray-600">@{comment.gardener?.username}</p>
                             <p className="text-xs text-gray-500">{new Date(comment.date).toLocaleDateString()}</p>
                             <p className="text-gray-700">{comment.comment}</p>
+                            {currentUser.id === comment.gardener?.userId ? <div className="flex justify-end space-x-1">
+                                {/* <button className="bg-gray-200 text-black text-xs px-2 py-1 rounded hover:bg-gray-400 transition duration-300">EDIT</button> */}
+                                <button onClick={() => {handleDeleteComment(comment.id)}} className="bg-gray-200 text-black text-xs px-2 py-1 rounded hover:bg-gray-400 transition duration-300">DELETE</button>
+                            </div> : "" }
                         </div>
                     )
                 })}
                 <div className="mt-4">
                     <textarea type="text" id="comment" name="comment" value={input} onChange={e => setInput(e.target.value)} className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Add a comment..."></textarea>
                     <div className="flex justify-end">
-                        <button onClick={handleSubmit} className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
+                        <button onClick={handleSubmitComment} className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
                             + COMMENT
                         </button>
                     </div>

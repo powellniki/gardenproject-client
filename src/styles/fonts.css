@@ -1,0 +1,7 @@
+/* src/styles/fonts.css */
+@font-face {
+    font-family: "handwriting";
+    src: url('/fonts/handwriting/signature.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

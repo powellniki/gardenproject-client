@@ -64,7 +64,32 @@ export const editComment = async (updatedComment) => {
             window.location.href = "/login"
           }
           if (error.message === '404') {
-            throw Error(err.message);
+            throw Error(error.message);
+          }
+    }
+}
+
+
+export const deleteComment = async (commentId) => {
+    const url = `${API_URL}/comments/${commentId}`
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw Error(response.status);
+        } 
+        return response
+    } catch (error) {
+        if (error.message === '401') {
+            window.location.href = "/login"
+          }
+          if (error.message === '404') {
+            throw Error(error.message);
           }
     }
 }

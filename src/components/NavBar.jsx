@@ -12,11 +12,11 @@ export const NavBar = () => {
                 <NavLink className="text-green-300 hover:text-green-100" to={"/discussion/topics"}>Discussion Boards</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-green-300 hover:text-green-100" to={"/"}>Marketplace</NavLink>
+                <NavLink className="text-green-300 hover:text-green-100" to={"/"}>All Posts</NavLink>
             </li>
-            <li className="navbar__item">
+            {/* <li className="navbar__item">
                 <NavLink className="text-green-300 hover:text-green-100" to={"/"}>My Profile</NavLink>
-            </li>
+            </li> */}
             {
                 (localStorage.getItem("token") !== null) ?
                     <li className="navbar__item">
