@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        header: ['handwriting']
+      },
       textShadow: {
         'sm': '2px 2px 4px rgba(0, 0, 0, 0.3)',
         'md': '2px 2px 4px rgba(0, 0, 0, 0.5)'

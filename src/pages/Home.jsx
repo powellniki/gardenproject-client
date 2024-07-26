@@ -31,14 +31,17 @@ function Home() {
     return (
       <main className='text-slate-900 p-4'>
         {/* <img src=""/> */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center">
+            <h1 className="text-8xl font-header text-green-100 pl-8 pb-8">the greenhouse society</h1>
             <div className="flex-1"></div>
-            <Filter onFilterChange={handleFilterChange}/>
-            <button 
-                className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
-                onClick={() => {navigate('/posts/new')}}>
-            SPROUT A CONVERSATION
-            </button>
+            <div className="mt-20">
+                <Filter onFilterChange={handleFilterChange}/>
+                <button 
+                    className="bg-amber-500 text-white px-2 py-1 mr-4 rounded hover:bg-amber-600 transition duration-300"
+                    onClick={() => {navigate('/posts/new')}}>
+                SPROUT A CONVERSATION
+                </button>
+            </div>
         </div>
         <div className="flex flex-row">
             <div className="w-1/5 p-4 mt-4 bg-gray-100 rounded-lg shadow self-start">
