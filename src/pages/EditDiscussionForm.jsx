@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { editPost, getPostByPostId } from "../data/posts.jsx";
 import { getTopics } from "../data/topics.jsx";
+import { deleteImage } from "../data/images.jsx";
 
 
 export const EditDiscussionForm = ({currentUser}) => {
@@ -28,7 +29,7 @@ export const EditDiscussionForm = ({currentUser}) => {
             setTopics(allTopics)
         };
         fetchData()
-    }, [postId])
+    }, [postId, currentImages])
 
     const handleTopicSelect = (e) => {
         const topicId = e.target.value;
@@ -47,7 +48,7 @@ export const EditDiscussionForm = ({currentUser}) => {
     }
 
     const handleRemoveCurrentImage = (imageId) => {
-        setCurrentImages(currentImages.filter(image => image.id !== imageId));
+        deleteImage(imageId)
     }
 
     const handleSubmit = (e) => {
@@ -77,7 +78,7 @@ export const EditDiscussionForm = ({currentUser}) => {
         }
 
         editPost(formData, postId).then(() => {
-            navigate('/')
+            navigate(`/posts/${postId}`)
         }).catch(err => console.error("Failed to create post:", err))
     }
 
