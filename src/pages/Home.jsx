@@ -30,7 +30,6 @@ function Home() {
 
     return (
       <main className='text-slate-900 p-4'>
-        {/* <img src=""/> */}
         <div className="flex justify-between items-center">
             <h1 className="text-8xl font-header text-green-100 pl-28 pb-8">the greenhouse society</h1>
             <div className="flex-1"></div>
