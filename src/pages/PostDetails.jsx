@@ -8,8 +8,8 @@ export const PostDetails = ({currentUser}) => {
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
     const [input, setInput] = useState("")
-    const [update, setUpdate] = useState(false)
     const [postImages, setPostImages] = useState([])
+    const [update, setUpdate] = useState(false)
     
     const { postId } = useParams()
     const navigate = useNavigate()

@@ -18,7 +18,7 @@ function Home() {
     }
 
     useEffect(() => {
-        fetchFilteredPosts('');
+        fetchFilteredPosts('')
         getTopics()
             .then(setTopics)
             .catch(error => console.error('Failed to load topics', error));

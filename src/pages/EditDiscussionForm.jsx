@@ -13,6 +13,7 @@ export const EditDiscussionForm = ({currentUser}) => {
     const [contentInput, setContentInput] = useState("")
     const [currentImages, setCurrentImages] = useState([])
     const [newImages, setNewImages] = useState([])
+    const [update, setUpdate] = useState(false)
 
     const { postId } = useParams()
     const navigate = useNavigate()
@@ -29,7 +30,7 @@ export const EditDiscussionForm = ({currentUser}) => {
             setTopics(allTopics)
         };
         fetchData()
-    }, [postId, currentImages])
+    }, [postId, update])
 
     const handleTopicSelect = (e) => {
         const topicId = e.target.value;
@@ -49,6 +50,9 @@ export const EditDiscussionForm = ({currentUser}) => {
 
     const handleRemoveCurrentImage = (imageId) => {
         deleteImage(imageId)
+            .then(() => {
+                setUpdate(!update) 
+            })
     }
 
     const handleSubmit = (e) => {

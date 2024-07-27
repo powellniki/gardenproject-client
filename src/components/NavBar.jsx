@@ -3,6 +3,7 @@ import "./NavBar.css"
 
 export const NavBar = () => {
     const navigate = useNavigate()
+
     return (
         <ul className="navbar p-5">
             <div>
