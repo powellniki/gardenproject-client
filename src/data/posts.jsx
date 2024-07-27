@@ -61,17 +61,16 @@ export const getPostByTopicId = async (topicId) => {
 }
 
 
-export const createPost = async (newPost) => {
+export const createPost = async (formData) => {
     const url = `${API_URL}/posts`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`
             },
-            body: JSON.stringify(newPost)
+            body: formData
         });
         const data = await response.json()
         if (!response.ok) {
@@ -84,17 +83,16 @@ export const createPost = async (newPost) => {
 }
 
 
-export const editPost = async (updatedPost) => {
-    const url = `${API_URL}/posts/${updatedPost.id}`
+export const editPost = async (formData, postId) => {
+    const url = `${API_URL}/posts/${postId}`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`
             },
-            body: JSON.stringify(updatedPost)
+            body: formData
         });
         if (!response.ok) {
             throw Error(response.status);
