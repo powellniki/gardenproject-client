@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { deletePost, getPostByPostId } from "../data/posts.jsx"
 import { createComment, deleteComment, getCommentsByPostId } from "../data/comments.jsx"
+import { getImagesByPostId } from "../data/images.jsx"
 
 export const PostDetails = ({currentUser}) => {
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
     const [input, setInput] = useState("")
     const [update, setUpdate] = useState(false)
+    const [postImages, setPostImages] = useState([])
     
     const { postId } = useParams()
     const navigate = useNavigate()
@@ -24,9 +26,16 @@ export const PostDetails = ({currentUser}) => {
         })
     }
 
+    const getImages = () => {
+        getImagesByPostId(postId).then(postData => {
+            setPostImages(postData)
+        })
+    }
+
     useEffect(() => {
         getPost() 
         getComments()
+        getImages()
     },[postId, update])
 
 
@@ -68,7 +77,12 @@ export const PostDetails = ({currentUser}) => {
                 <h3 className="text-lg">@{post.gardener?.username}</h3>
                 <p>{new Date(post.created_date).toLocaleDateString()}</p>
             </div>
-            <div className="mb-4">
+            <div className="flex justify-center">
+                {post.images?.map(image => {
+                    return <img key={image.id} src={image.image_url} alt="Image"/>
+                })}
+            </div>
+            <div className="mb-4 mt-8">
                 <p className="text-gray-700">{post.description}</p>
             </div>
             <div>
