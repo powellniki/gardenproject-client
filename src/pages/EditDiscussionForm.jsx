@@ -10,6 +10,7 @@ export const EditDiscussionForm = ({currentUser}) => {
     const [selectedTopics, setSelectedTopics] = useState([])
     const [titleInput, setTitleInput] = useState("")
     const [contentInput, setContentInput] = useState("")
+    const [currentImages, setCurrentImages] = useState([])
     const [newImages, setNewImages] = useState([])
 
     const { postId } = useParams()
@@ -22,7 +23,8 @@ export const EditDiscussionForm = ({currentUser}) => {
             setPost(postDetails)
             setTitleInput(postDetails.title)
             setContentInput(postDetails.description)
-            setSelectedTopics(postDetails.topics)
+            setSelectedTopics(postDetails.topics || [])
+            setCurrentImages(postDetails.images || [])
             setTopics(allTopics)
         };
         fetchData()
@@ -41,7 +43,11 @@ export const EditDiscussionForm = ({currentUser}) => {
     }
 
     const handleImageChange = (e) => {
-        setNewImages(e.target.files)
+        setNewImages([...e.target.files])
+    }
+
+    const handleRemoveCurrentImage = (imageId) => {
+        setCurrentImages(currentImages.filter(image => image.id !== imageId));
     }
 
     const handleSubmit = (e) => {
@@ -58,12 +64,16 @@ export const EditDiscussionForm = ({currentUser}) => {
         selectedTopics.forEach(topic => {
             formData.append('posttopics', topic.id)
         })
-        Array.from(newImages).forEach(image => {
+        currentImages.forEach(image => {
+            // Append existing images as they are or by referencing their IDs
+            formData.append('image_path', image.id)
+        })
+        newImages.forEach(image => {
             formData.append('image_path', image)
         })
         console.log("Form Data:", formData);  // Log FormData entries
         for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
+            console.log(pair[0]+ ', ' + pair[1])
         }
 
         editPost(formData, postId).then(() => {
@@ -126,7 +136,18 @@ export const EditDiscussionForm = ({currentUser}) => {
 
             <fieldset>
                 <div>
-                    <label htmlFor="image" className="block text-lg font-medium text-gray-700 mb-2">Images:</label>
+                    <label htmlFor="image" className="block text-lg font-medium text-gray-700 mb-2">Current Images:</label>
+                    <div className="flex space-x-2 mb-4">
+                        {currentImages.map((image, index) => (
+                            <div key={index}>
+                                <img src={image.image_url} alt={`img-${index}`} className="w-20 h-20 object-cover rounded" />
+                                <button type="button" onClick={() => handleRemoveCurrentImage(image.id)} className="text-red-500">Remove</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <label htmlFor="image" className="block text-lg font-medium text-gray-700 mb-2">Add New Images:</label>
                     <input
                         type="file"
                         id="image"
