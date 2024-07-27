@@ -53,13 +53,6 @@ export const NewDiscussionForm = ({currentUser}) => {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
 
-        // const newPost = {
-        //     title: titleInput,
-        //     description: contentInput,
-        //     gardener: currentUser.id,
-        //     posttopics: selectedTopics.map(t => t.id)
-        // }
-
         createPost(formData).then(() => {
             navigate('/')
         }).catch(err => console.error("Failed to create post:", err))

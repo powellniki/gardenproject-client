@@ -10,6 +10,7 @@ export const EditDiscussionForm = ({currentUser}) => {
     const [selectedTopics, setSelectedTopics] = useState([])
     const [titleInput, setTitleInput] = useState("")
     const [contentInput, setContentInput] = useState("")
+    const [newImages, setNewImages] = useState([])
 
     const { postId } = useParams()
     const navigate = useNavigate()
@@ -39,6 +40,10 @@ export const EditDiscussionForm = ({currentUser}) => {
         setSelectedTopics(prevTopics => prevTopics.filter(t => t.id !== topicId))
     }
 
+    const handleImageChange = (e) => {
+        setNewImages(e.target.files)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!currentUser || !currentUser.id) {
@@ -46,17 +51,24 @@ export const EditDiscussionForm = ({currentUser}) => {
             return
         }
 
-        const updatedPost = {
-            id: postId,
-            title: titleInput,
-            description: contentInput,
-            gardener: currentUser.id,
-            posttopics: selectedTopics.map(t => t.id)
+        const formData = new FormData()
+        formData.append('title', titleInput)
+        formData.append('description', contentInput)
+        formData.append('gardener', currentUser.id)
+        selectedTopics.forEach(topic => {
+            formData.append('posttopics', topic.id)
+        })
+        Array.from(newImages).forEach(image => {
+            formData.append('image_path', image)
+        })
+        console.log("Form Data:", formData);  // Log FormData entries
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
         }
 
-        editPost(updatedPost).then(() => {
+        editPost(formData, postId).then(() => {
             navigate('/')
-        })
+        }).catch(err => console.error("Failed to create post:", err))
     }
 
     return (
@@ -109,6 +121,20 @@ export const EditDiscussionForm = ({currentUser}) => {
                             </button>
                         </span>
                     ))}
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div>
+                    <label htmlFor="image" className="block text-lg font-medium text-gray-700 mb-2">Images:</label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="images"
+                        multiple
+                        className="w-full p-2 border border-gray-300 rounded"
+                        onChange={handleImageChange}
+                    />
                 </div>
             </fieldset>
 
