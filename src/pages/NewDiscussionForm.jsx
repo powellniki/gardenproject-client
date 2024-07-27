@@ -9,7 +9,7 @@ export const NewDiscussionForm = ({currentUser}) => {
     const [titleInput, setTitleInput] = useState("")
     const [contentInput, setContentInput] = useState("")
     const [selectedTopics, setSelectedTopics] = useState([])
-    // const [imageInput, setImageInput] = useState([])
+    const [imageInput, setImageInput] = useState(null)
 
     const navigate = useNavigate()
 
@@ -20,38 +20,53 @@ export const NewDiscussionForm = ({currentUser}) => {
     }, [])
 
     const handleTopicSelect = (e) => {
-        const topicId = e.target.value;
-        const topic = topics.find(t => t.id.toString() === topicId);
+        const topicId = e.target.value
+        const topic = topics.find(t => t.id.toString() === topicId)
         if (topic && !selectedTopics.includes(topic)) {
-            setSelectedTopics([...selectedTopics, topic]);
+            setSelectedTopics([...selectedTopics, topic])
         }
     };
 
     const removeTopic = (topicId) => {
-        setSelectedTopics(selectedTopics.filter(t => t.id !== topicId));
+        setSelectedTopics(selectedTopics.filter(t => t.id !== topicId))
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!currentUser || !currentUser.id) {
-            console.error("Current user is not defined!");
-            return;
+            console.error("Current user is not defined!")
+            return
         }
         
-        const newPost = {
-            title: titleInput,
-            description: contentInput,
-            gardener: currentUser.id,
-            posttopics: selectedTopics.map(t => t.id)
+        const formData = new FormData()
+        formData.append('title', titleInput)
+        formData.append('description', contentInput)
+        formData.append('gardener', currentUser.id)
+        selectedTopics.forEach(topic => {
+            formData.append('posttopics', topic.id)
+        })
+        if (imageInput) {
+            formData.append('image_path', imageInput)
+        }
+        console.log("Form Data:", formData);  // Log FormData entries
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
         }
 
-        createPost(newPost).then(() => {
+        // const newPost = {
+        //     title: titleInput,
+        //     description: contentInput,
+        //     gardener: currentUser.id,
+        //     posttopics: selectedTopics.map(t => t.id)
+        // }
+
+        createPost(formData).then(() => {
             navigate('/')
-        })
+        }).catch(err => console.error("Failed to create post:", err))
     }
 
     return (
-        <form className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+        <form method="post" encType="multipart/form-data" className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
             <h1 className="text-4xl font-semibold mb-6">Start a New Discussion</h1>
             <div className="space-y-6">
 
@@ -107,8 +122,15 @@ export const NewDiscussionForm = ({currentUser}) => {
 
                 <fieldset>
                     <div>
-                        {/* <label>Images:</label> */}
-                        {/* ADD AFTER MVP */}
+                        <label htmlFor="image" className="block text-lg font-medium text-gray-700 mb-2">Image: </label>
+                        <input
+                            type="file"
+                            id="image"
+                            name="images"
+                            multiple
+                            className="w-full p-2 border border-gray-300 rounded"
+                            onChange={e => setImageInput(e.target.files[0])}
+                        />
                     </div>
                 </fieldset>
 

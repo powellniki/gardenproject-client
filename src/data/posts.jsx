@@ -61,17 +61,16 @@ export const getPostByTopicId = async (topicId) => {
 }
 
 
-export const createPost = async (newPost) => {
+export const createPost = async (formData) => {
     const url = `${API_URL}/posts`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`
             },
-            body: JSON.stringify(newPost)
+            body: formData
         });
         const data = await response.json()
         if (!response.ok) {
