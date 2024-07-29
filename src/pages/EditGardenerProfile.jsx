@@ -51,55 +51,59 @@ export const EditGardenerProfile = () => {
     }
 
     return (
-        <form>
-            <h1>Edit Profile</h1>
+        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow mt-8">
+            <h1 className="text-4xl font-semibold mb-6 text-center">Edit Profile</h1>
 
-            <fieldset>
+            <fieldset className="mb-4">
                 <div>
-                    <label htmlFor="username">Username:</label>
+                    <label htmlFor="username" className="block text-lg font-medium text-gray-700 mb-2">Username:</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         value={usernameInput}
                         onChange={e => setUsernameInput(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
                 </div>
             </fieldset>
 
-
-            <fieldset>
+            <fieldset className="mb-4">
                 <div>
-                    <label htmlFor="location">Location:</label>
+                    <label htmlFor="location" className="block text-lg font-medium text-gray-700 mb-2">Location:</label>
                     <input
                         type="text"
                         id="location"
                         name="location"
                         value={locationInput}
                         onChange={e => setLocationInput(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
                 </div>
             </fieldset>
 
-
-            <fieldset>
+            <fieldset className="mb-6">
                 <div>
-                    <label htmlFor="bio">Bio:</label>
+                    <label htmlFor="bio" className="block text-lg font-medium text-gray-700 mb-2">Bio:</label>
                     <textarea
                         type="text"
                         id="bio"
                         name="bio"
                         value={bioInput}
                         onChange={e => setBioInput(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded h-32"
                         required
                     />
                 </div>
             </fieldset>
 
-            <fieldset>
-                <button onClick={handleSubmit}>
+            <fieldset className="flex justify-end">
+                <button 
+                    type="submit"
+                    className="bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300"
+                >
                     Fertilize Changes
                 </button>
             </fieldset>
