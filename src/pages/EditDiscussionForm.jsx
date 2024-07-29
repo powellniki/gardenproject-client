@@ -5,7 +5,8 @@ import { getTopics } from "../data/topics.jsx";
 import { deleteImage } from "../data/images.jsx";
 
 
-export const EditDiscussionForm = ({currentUser}) => {
+export const EditDiscussionForm = () => {
+    const [currentUser, setCurrentUser] = useState("")
     const [post, setPost] = useState({})
     const [topics, setTopics] = useState([])
     const [selectedTopics, setSelectedTopics] = useState([])
@@ -14,9 +15,15 @@ export const EditDiscussionForm = ({currentUser}) => {
     const [currentImages, setCurrentImages] = useState([])
     const [newImages, setNewImages] = useState([])
     const [update, setUpdate] = useState(false)
-
     const { postId } = useParams()
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        const localUser = localStorage.getItem("garden_token")
+        const localUserObject = JSON.parse(localUser)
+        setCurrentUser(localUserObject)
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -166,7 +173,7 @@ export const EditDiscussionForm = ({currentUser}) => {
 
         <div className="flex justify-end mt-4">
             <button type="submit" className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
-            Fertilize Changes
+                Fertilize Changes
             </button>
         </div>
     </form>

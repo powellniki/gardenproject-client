@@ -29,7 +29,7 @@ export const Register = () => {
             .then(res => res.json())
             .then(authInfo => {
                 if (authInfo && authInfo.token) {
-                    localStorage.setItem("token", JSON.stringify(authInfo))
+                    localStorage.setItem("garden_token", JSON.stringify(authInfo))
                     navigate("/")
                 } else {
                     existDialog.current.showModal()
@@ -46,7 +46,7 @@ export const Register = () => {
 
             <section>
                 <form className="form--login" onSubmit={handleRegister}>
-                    <h1 className="text-4xl mt-7 mb-3">Rock of Ages</h1>
+                    <h1 className="text-4xl mt-7 mb-3">The Greenhouse Society</h1>
                     <h2 className="text-xl mb-10">Register new account</h2>
                     <fieldset className="mb-4">
                         <label htmlFor="firstName"> First name </label>

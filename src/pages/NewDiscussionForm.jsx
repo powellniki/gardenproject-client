@@ -4,14 +4,20 @@ import { getTopics } from "../data/topics.jsx"
 import { createPost } from "../data/posts.jsx"
 
 
-export const NewDiscussionForm = ({currentUser}) => {
+export const NewDiscussionForm = () => {
+    const [currentUser, setCurrentUser] = useState("")
     const [topics, setTopics] = useState([])
     const [titleInput, setTitleInput] = useState("")
     const [contentInput, setContentInput] = useState("")
     const [selectedTopics, setSelectedTopics] = useState([])
     const [imageInput, setImageInput] = useState(null)
-
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const localUser = localStorage.getItem("garden_token")
+        const localUserObject = JSON.parse(localUser)
+        setCurrentUser(localUserObject)
+    }, [])
 
     useEffect(() => {
         getTopics().then(topicData => {
