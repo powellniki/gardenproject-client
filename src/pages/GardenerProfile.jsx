@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { getGardenerById } from "../data/gardeners.jsx"
 import { getPostByGardenerId } from "../data/posts.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
@@ -10,6 +10,7 @@ export const GardenerProfile = () => {
     const [gardenerInfo, setGardenerInfo] = useState({})
     const [posts, setPosts] = useState([])
     const { gardenerId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const localUser = localStorage.getItem("garden_token")
@@ -47,10 +48,13 @@ export const GardenerProfile = () => {
                     <div className="w-3/4 text-sm text-gray-700">
                         {gardenerInfo.bio}
                     </div>
-                    {currentUser.id == gardenerId ? 
-                        <button className="bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300">
-                            EDIT PROFILE
-                        </button> : "" }
+                    {currentUser.id === gardenerInfo.userId ? 
+                        <Link to={`/profile/${currentUser.id}/edit`}>
+                            <button className="bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300">
+                                EDIT PROFILE
+                            </button> 
+                        </Link>
+                        : "" }
                 </div>
                 <div className="flex flex-col items-center justify-center bg-gray-100 py-4 px-6 rounded-lg shadow-inner">
                     <div className="text-3xl font-semibold text-gray-800">{posts.length}</div>

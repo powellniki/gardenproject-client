@@ -10,6 +10,7 @@ import { DiscussionBoard } from '../pages/DiscussionBoard.jsx'
 import { NewDiscussionForm } from '../pages/NewDiscussionForm.jsx'
 import { EditDiscussionForm } from '../pages/EditDiscussionForm.jsx'
 import { GardenerProfile } from '../pages/GardenerProfile.jsx'
+import { EditGardenerProfile } from '../pages/EditGardenerProfile.jsx'
 
 
 export const ApplicationViews = () => {
@@ -32,6 +33,7 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="profile">
                     <Route path=":gardenerId" element={<GardenerProfile />}/>
+                    <Route path=":gardenerId/edit" element={<EditGardenerProfile />}/>
                 </Route>
             </Route>
         </Routes>

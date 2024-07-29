@@ -1,5 +1,6 @@
 const API_URL = 'http://localhost:8000';
 
+
 export const getGardenerById = async (gardenerId) => {
     const url = `${API_URL}/profiles/${gardenerId}`
     try {
