@@ -35,16 +35,16 @@ export const GardenerProfile = () => {
 
     return (
         <section className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 mt-6">
-            <div className="flex flex-col items-center">
 
-                <div className="flex flex-col items-center space-y-4 mb-8">
+            <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-col items-start space-y-4">
                     <div className="text-2xl font-bold text-gray-800">
                         <>@{gardenerInfo.username}</>
                     </div>
                     <div className="text-sm text-gray-500">
                         {gardenerInfo.location}
                     </div>
-                    <div className="w-3/4 text-base text-gray-700 text-center">
+                    <div className="w-3/4 text-sm text-gray-700">
                         {gardenerInfo.bio}
                     </div>
                     {currentUser.id == gardenerId ? 
@@ -52,23 +52,18 @@ export const GardenerProfile = () => {
                             EDIT PROFILE
                         </button> : "" }
                 </div>
-
-                <div className="w-full flex justify-around bg-gray-100 py-4 rounded-lg shadow-inner mb-8">
-                    <div className="text-center">
-                        <div className="text-3xl font-semibold text-gray-800">{posts.length}</div>
-                        <p className="text-gray-600">posts</p>
-                    </div>
+                <div className="flex flex-col items-center justify-center bg-gray-100 py-4 px-6 rounded-lg shadow-inner">
+                    <div className="text-3xl font-semibold text-gray-800">{posts.length}</div>
+                    <p className="text-gray-600">posts</p>
                 </div>
-
-                <div className="w-full">
-                    <div className="space-y-6">
-                        {posts.map(post => {
-                            return <PostListObject post={post} key={post.id}/>
-                        })}
-                    </div>
-                </div>
-
             </div>
+                
+            <div className="space-y-6">
+                {posts.map(post => {
+                    return <PostListObject post={post} key={post.id}/>
+                })}
+            </div>
+                
         </section>
     )
 }
