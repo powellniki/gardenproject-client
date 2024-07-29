@@ -41,6 +41,26 @@ export const getPostByPostId = async (postId) => {
 }
 
 
+export const getPostByGardenerId = async (gardenerId) => {
+    const url = `${API_URL}/posts?gardener=${gardenerId}`
+    try {
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
+        const response = await fetch(url, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch specified gardeners posts');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching specified gardeners posts:", error);
+        throw error;
+    }
+}
+
+
 export const getPostByTopicId = async (topicId) => {
     const url = `${API_URL}/posts?topic=${topicId}`
     try {
