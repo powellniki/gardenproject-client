@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:8000';
 
 export const getTopics = async () => {
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(`${API_URL}/topics`, {
             headers: {
                 Authorization: `Token ${token}`

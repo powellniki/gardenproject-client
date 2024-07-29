@@ -5,7 +5,8 @@ import { getTopics } from "../data/topics.jsx";
 import { deleteImage } from "../data/images.jsx";
 
 
-export const EditDiscussionForm = ({currentUser}) => {
+export const EditDiscussionForm = () => {
+    const [currentUser, setCurrentUser] = useState("")
     const [post, setPost] = useState({})
     const [topics, setTopics] = useState([])
     const [selectedTopics, setSelectedTopics] = useState([])
@@ -14,9 +15,15 @@ export const EditDiscussionForm = ({currentUser}) => {
     const [currentImages, setCurrentImages] = useState([])
     const [newImages, setNewImages] = useState([])
     const [update, setUpdate] = useState(false)
-
     const { postId } = useParams()
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        const localUser = localStorage.getItem("garden_token")
+        const localUserObject = JSON.parse(localUser)
+        setCurrentUser(localUserObject)
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {

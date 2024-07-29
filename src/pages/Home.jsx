@@ -12,6 +12,7 @@ function Home() {
     const [posts, setPosts] = useState([])
     const [topics, setTopics] = useState([])
     const navigate = useNavigate()
+    
 
     const fetchFilteredPosts = (filter) => {
         getPosts(filter).then(setPosts).catch(error => console.error('Failed to load posts', error));

@@ -3,7 +3,7 @@ import { NavBar } from "./NavBar.jsx"
 
 
 export const Authorized = () => {
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("garden_token")) {
     return <>
       <NavBar />
       <main className="">

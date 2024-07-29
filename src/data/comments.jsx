@@ -3,7 +3,7 @@ const API_URL = 'http://localhost:8000';
 export const getCommentsByPostId = async (postId) => {
     const url = `${API_URL}/comments?post=${postId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             headers: {
                 Authorization: `Token ${token}`
@@ -23,7 +23,7 @@ export const getCommentsByPostId = async (postId) => {
 export const createComment = async (comment) => {
     const url = `${API_URL}/comments`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -46,7 +46,7 @@ export const createComment = async (comment) => {
 export const editComment = async (updatedComment) => {
     const url = `${API_URL}/comments/${updatedComment.id}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -73,7 +73,7 @@ export const editComment = async (updatedComment) => {
 export const deleteComment = async (commentId) => {
     const url = `${API_URL}/comments/${commentId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {

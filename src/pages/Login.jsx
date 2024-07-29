@@ -20,7 +20,7 @@ export const Login = () => {
             .then(res => res.json())
             .then(authInfo => {
                 if (authInfo.valid) {
-                    localStorage.setItem("token", JSON.stringify(authInfo))
+                    localStorage.setItem("garden_token", JSON.stringify(authInfo))
                     navigate("/")
                 } else {
                     existDialog.current.showModal()

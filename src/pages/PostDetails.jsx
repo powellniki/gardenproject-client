@@ -4,16 +4,22 @@ import { deletePost, getPostByPostId } from "../data/posts.jsx"
 import { createComment, deleteComment, getCommentsByPostId } from "../data/comments.jsx"
 import { getImagesByPostId } from "../data/images.jsx"
 
-export const PostDetails = ({currentUser}) => {
+export const PostDetails = () => {
+    const [currentUser, setCurrentUser] = useState("")
     const [post, setPost] = useState([])
     const [comments, setComments] = useState([])
     const [input, setInput] = useState("")
     const [postImages, setPostImages] = useState([])
     const [update, setUpdate] = useState(false)
-    
     const { postId } = useParams()
     const navigate = useNavigate()
 
+    
+    useEffect(() => {
+        const localUser = localStorage.getItem("garden_token")
+        const localUserObject = JSON.parse(localUser)
+        setCurrentUser(localUserObject)
+    }, [])
 
     const getPost = () => {
         getPostByPostId(postId).then(postData => {

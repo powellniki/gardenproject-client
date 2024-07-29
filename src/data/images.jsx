@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8000';
 export const getImagesByPostId = async (postId) => {
     const url = `${API_URL}/images?post=${postId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             headers: {
                 Authorization: `Token ${token}`
@@ -24,7 +24,7 @@ export const getImagesByPostId = async (postId) => {
 export const deleteImage = async (imageId) => {
     const url = `${API_URL}/images/${imageId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {

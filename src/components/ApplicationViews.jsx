@@ -9,16 +9,10 @@ import { DiscussionTopics } from '../pages/DiscussionTopics.jsx'
 import { DiscussionBoard } from '../pages/DiscussionBoard.jsx'
 import { NewDiscussionForm } from '../pages/NewDiscussionForm.jsx'
 import { EditDiscussionForm } from '../pages/EditDiscussionForm.jsx'
+import { GardenerProfile } from '../pages/GardenerProfile.jsx'
 
 
 export const ApplicationViews = () => {
-    const [currentUser, setCurrentUser] = useState({})
-
-    useEffect(() => {
-        const localUser = localStorage.getItem("token") 
-        const localUserObject = JSON.parse(localUser)
-        setCurrentUser(localUserObject)
-    }, [])
 
 
     return <BrowserRouter>
@@ -28,13 +22,16 @@ export const ApplicationViews = () => {
             <Route element={<Authorized />}>
                 <Route path="/" element={<Home />} />
                 <Route path="posts">
-                    <Route path=":postId" element={<PostDetails currentUser={currentUser}/>} />
-                    <Route path="new" element={<NewDiscussionForm currentUser={currentUser}/>} />
-                    <Route path=":postId/edit" element={<EditDiscussionForm currentUser={currentUser}/>} />
+                    <Route path=":postId" element={<PostDetails />} />
+                    <Route path="new" element={<NewDiscussionForm />} />
+                    <Route path=":postId/edit" element={<EditDiscussionForm />} />
                 </Route>
                 <Route path="discussion">
                     <Route path="topics" element={<DiscussionTopics />} />
                     <Route path="topics/:topicId" element={<DiscussionBoard />} />
+                </Route>
+                <Route path="profile">
+                    <Route path=":gardenerId" element={<GardenerProfile />}/>
                 </Route>
             </Route>
         </Routes>

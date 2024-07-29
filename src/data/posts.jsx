@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8000';
 export const getPosts = async (filter = '') => {
     const url = `${API_URL}/posts${filter ? `?filter=${filter}` : ''}`;
         try {
-            const token = JSON.parse(localStorage.getItem("token")).token;
+            const token = JSON.parse(localStorage.getItem("garden_token")).token;
             const response = await fetch(url, {
                 headers: {
                     Authorization: `Token ${token}`
@@ -24,7 +24,7 @@ export const getPosts = async (filter = '') => {
 export const getPostByPostId = async (postId) => {
     const url = `${API_URL}/posts/${postId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             headers: {
                 Authorization: `Token ${token}`
@@ -44,7 +44,7 @@ export const getPostByPostId = async (postId) => {
 export const getPostByTopicId = async (topicId) => {
     const url = `${API_URL}/posts?topic=${topicId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             headers: {
                 Authorization: `Token ${token}`
@@ -64,7 +64,7 @@ export const getPostByTopicId = async (topicId) => {
 export const createPost = async (formData) => {
     const url = `${API_URL}/posts`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -86,7 +86,7 @@ export const createPost = async (formData) => {
 export const editPost = async (formData, postId) => {
     const url = `${API_URL}/posts/${postId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -112,7 +112,7 @@ export const editPost = async (formData, postId) => {
 export const deletePost = async (postId) => {
     const url = `${API_URL}/posts/${postId}`
     try {
-        const token = JSON.parse(localStorage.getItem("token")).token;
+        const token = JSON.parse(localStorage.getItem("garden_token")).token;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {
