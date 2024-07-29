@@ -173,7 +173,7 @@ export const EditDiscussionForm = () => {
 
         <div className="flex justify-end mt-4">
             <button type="submit" className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
-            Fertilize Changes
+                Fertilize Changes
             </button>
         </div>
     </form>
