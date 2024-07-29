@@ -5,6 +5,42 @@
 }
 
 .navbar__item {
-    flex-basis: 15%;
     list-style-type: none;
 }
+
+.navbar__item a,
+.navbar__item button {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    /* color: inherit; */
+    background: none; /* Ensure no default button styles interfere */
+    border: none;     /* Ensure no default button styles interfere */
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Only apply underline effect to top-level items */
+.top-level a::before,
+.top-level button::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: currentColor;
+    transition: all 0.3s ease-out;
+}
+
+.top-level a:hover::before,
+.top-level button:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* Ensure dropdown items don't have underline effect */
+.no-underline::before {
+    content: none !important;
+}
+

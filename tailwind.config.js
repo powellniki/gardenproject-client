@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        header: ['handwriting']
+        handwriting: ['handwriting'],
+        arsenal: ['arsenal']
       },
       textShadow: {
         'sm': '2px 2px 4px rgba(0, 0, 0, 0.3)',
@@ -15,12 +16,6 @@ export default {
       },
       colors: {
         'heading-main': '',
-        'heading-second': '',
-        'button': '',
-        'paragraph': '',
-        'off-white': '',
-        'dark-brown': '',
-        'teal': '',
       }
     },
   },
