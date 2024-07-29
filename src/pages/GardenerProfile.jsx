@@ -36,9 +36,11 @@ export const GardenerProfile = () => {
 
     return (
         <section className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 mt-6">
-
             <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-col items-start space-y-4">
+                    <div className="w-24 h-24">
+                        <img alt="Profile" className="rounded-full w-full h-full object-cover" src={gardenerInfo.image}/>
+                    </div>
                     <div className="text-2xl font-bold text-gray-800">
                         <>@{gardenerInfo.username}</>
                     </div>
@@ -61,13 +63,11 @@ export const GardenerProfile = () => {
                     <p className="text-gray-600">posts</p>
                 </div>
             </div>
-                
             <div className="space-y-6">
                 {posts.map(post => {
                     return <PostListObject post={post} key={post.id}/>
                 })}
             </div>
-                
         </section>
     )
 }
