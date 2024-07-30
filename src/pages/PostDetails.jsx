@@ -78,7 +78,7 @@ export const PostDetails = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <section className="border border-gray-300 rounded-lg p-12 m-4 bg-white shadow">
+            <section className="border border-gray-300 rounded p-12 m-4 bg-white shadow-xl">
                 <h1 className="text-4xl font-arsenal font-semibold mb-8">{post.title}</h1>
                 <div className="text-sm text-gray-500 flex justify-between mb-4">
                     <h3 className="text-lg">@{post.gardener?.username}</h3>
@@ -94,19 +94,19 @@ export const PostDetails = () => {
                 </div>
                 <div>
                     {post.topics?.map(topic => {
-                        return <span className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-8" key={topic.id}>{topic.name}</span>
+                        return <span className="inline-block bg-green-900 bg-opacity-10 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-2" key={topic.id}>{topic.name}</span>
                     })}
                 </div>
                 <div>
                     {currentUser.id === post.gardener?.userId ? <div className="flex justify-end space-x-1 mb-4">
                         <Link to={`/posts/${post.id}/edit`}>
-                            <button className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-400 transition duration-300 w-20">EDIT</button>
+                            <button className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-300 transition duration-300 w-20">EDIT</button>
                         </Link>
-                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-400 transition duration-300">DELETE</button>
+                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-300 transition duration-300">DELETE</button>
                         </div> : "" }
                 </div>
                 <div>
-                    <h3 className="text-2xl font-arsenal mb-2">Comments:</h3>
+                    <h3 className="text-2xl font-arsenal mb-2">comments:</h3>
                     {comments.map(comment => {
                         return (
                             <div className="mb-4 border-t border-gray-200 pt-2" key={comment.id}>
@@ -114,16 +114,16 @@ export const PostDetails = () => {
                                 <p className="text-xs text-gray-500">{new Date(comment.date).toLocaleDateString()}</p>
                                 <p className="text-gray-700">{comment.comment}</p>
                                 {currentUser.id === comment.gardener?.userId ? <div className="flex justify-end space-x-1">
-                                    {/* <button className="bg-gray-200 text-black text-xs px-2 py-1 rounded hover:bg-gray-400 transition duration-300">EDIT</button> */}
-                                    <button onClick={() => {handleDeleteComment(comment.id)}} className="bg-gray-200 text-black text-xs px-2 py-1 rounded hover:bg-gray-400 transition duration-300">DELETE</button>
+                                    {/* <button className="bg-gray-200 text-black text-xs px-2 py-1 rounded hover:bg-gray-300 transition duration-300">EDIT</button> */}
+                                    <button onClick={() => {handleDeleteComment(comment.id)}} className="bg-gray-100 text-black text-xs px-2 py-1 rounded hover:bg-gray-300 transition duration-300">DELETE</button>
                                 </div> : "" }
                             </div>
                         )
                     })}
                     <div className="mt-4">
-                        <textarea type="text" id="comment" name="comment" value={input} onChange={e => setInput(e.target.value)} className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Add a comment..."></textarea>
+                        <textarea type="text" id="comment" name="comment" value={input} onChange={e => setInput(e.target.value)} className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="add a comment..."></textarea>
                         <div className="flex justify-end">
-                            <button onClick={handleSubmitComment} className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition duration-300">
+                            <button onClick={handleSubmitComment} className="text-green-900 border border-green-900 text-sm mt-4 px-8 py-2 hover:bg-opacity-70 hover:text-white hover:bg-green-950 hover:border-transparent transition duration-300">
                                 + COMMENT
                             </button>
                         </div>
