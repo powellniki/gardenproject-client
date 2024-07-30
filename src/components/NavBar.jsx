@@ -21,18 +21,18 @@ export const NavBar = () => {
     return (
         <nav className="navbar flex justify-between items-center p-4 mr-8">
             <div>
-                <p className="font-arsenal text-5xl text-green-100">the Greenhouse Society</p>
+                <p className="font-arsenal text-5xl text-green-900">the Greenhouse Society</p>
             </div>
             <ul className="flex space-x-20 font-arsenal text-2xl">
                 <li className="navbar__item top-level">
-                    <NavLink className="text-green-100" to={"/"}>home</NavLink>
+                    <NavLink className="text-green-900" to={"/"}>home</NavLink>
                 </li>
                 <li className="navbar__item top-level">
-                    <NavLink className="text-green-100" to={"/discussion/topics"}>boards</NavLink>
+                    <NavLink className="text-green-900" to={"/discussion/topics"}>boards</NavLink>
                 </li>
                 <li className="navbar__item relative top-level">
                     <button
-                        className="text-green-100"
+                        className="text-green-900"
                         onClick={toggleDropdown}
                     >
                         user
@@ -59,7 +59,7 @@ export const NavBar = () => {
                 {
                     (localStorage.getItem("garden_token") !== null) ?
                         <li className="navbar__item top-level">
-                            <button className="text-green-100"
+                            <button className="text-green-900"
                                 onClick={() => {
                                     localStorage.removeItem("garden_token")
                                     navigate('/login')
@@ -68,10 +68,10 @@ export const NavBar = () => {
                         </li> :
                         <>
                             <li className="navbar__item top-level">
-                                <NavLink className="text-green-100" to={"/login"}>Login</NavLink>
+                                <NavLink className="text-green-900" to={"/login"}>Login</NavLink>
                             </li>
                             <li className="navbar__item top-level">
-                                <NavLink className="text-green-100" to={"/register"}>Register</NavLink>
+                                <NavLink className="text-green-900" to={"/register"}>Register</NavLink>
                             </li>
                         </>
                 }
