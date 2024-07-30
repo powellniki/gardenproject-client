@@ -28,7 +28,7 @@ export const DiscussionBoard = () => {
                         <button 
                             className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
                             onClick={() => {navigate('/posts/new')}}>
-                            SPROUT A CONVERSATION
+                            START A CONVERSATION
                         </button>
                     </div>
                 </div>

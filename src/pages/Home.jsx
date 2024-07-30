@@ -3,7 +3,7 @@ import { getPosts } from "../data/posts.jsx"
 import { getTopics } from "../data/topics.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
 import { Filter } from "../components/Filter.jsx"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import backgroundImage from '../assets/greenhouse.jpg'
 
 
@@ -55,7 +55,7 @@ function Home() {
             <div className="w-1/5 p-4 mt-4 bg-green-950 shadow self-start">
                 <h3 className="font-arsenal text-2xl text-white mb-2">discussion Board Topics</h3>
                 {topics.map(topic => {
-                    return <div className="mb-2 p-1 text-sm text-white" key={topic.name}>{topic.name}</div>
+                    return <Link to={`/discussion/topics/${topic.id}`} key={topic.id} ><div className="mb-2 p-1 text-sm text-white" key={topic.name}>{topic.name}</div></Link>
                 })}
             </div>
             <div className="w-4/5 p-4">
