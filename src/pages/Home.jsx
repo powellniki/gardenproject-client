@@ -42,7 +42,7 @@ function Home() {
         }}>
             <div className="font-arsenal text-8xl">welcome to the Society</div>
             <button 
-                className="text-white text-xs mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-900 hover:border-green-900 transition duration-300"
+                className="text-white text-sm mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-900 hover:border-transparent transition duration-300"
                 onClick={() => {navigate('/posts/new')}}>
             START A DISCUSSION
             </button>
@@ -52,14 +52,15 @@ function Home() {
         </div>
 
         <div className="flex flex-row p-4">
-            <div className="w-1/5 p-4 mt-4 bg-gray-100 rounded-lg shadow self-start">
-                <h3 className="text-xl mb-4">Discussion Board Topics</h3>
+            <div className="w-1/5 p-4 mt-4 bg-green-950 rounded shadow self-start">
+                <h3 className="font-arsenal text-2xl text-white mb-2">discussion Board Topics</h3>
                 {topics.map(topic => {
-                    return <div className="mb-2 p-1 text-sm" key={topic.name}>{topic.name}</div>
+                    return <div className="mb-2 p-1 text-sm text-white" key={topic.name}>{topic.name}</div>
                 })}
             </div>
             <div className="w-4/5 p-4">
-                <div className="mb-4">
+                <div className="mb-4 flex justify-between">
+                    <h2 className="font-arsenal text-3xl pl-4 text-green-900">all Posts</h2>
                     <Filter onFilterChange={handleFilterChange}/>
                 </div>
                 {posts.map(post => {

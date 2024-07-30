@@ -6,7 +6,7 @@ export const PostListObject = ({post}) => {
 
     return (
         <Link to={`/posts/${post.id}`}>
-            <section className="border border-gray-300 rounded-lg p-4 mb-4 bg-white hover:bg-gray-50 transition duration-300">
+            <section className="border border-gray-300 rounded p-4 mb-4 bg-white hover:bg-gray-50 transition duration-300">
                 <div>
                     <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
                     <div className="text-sm text-gray-500 flex justify-between mb-2">
@@ -18,11 +18,12 @@ export const PostListObject = ({post}) => {
                     </div>
                     <div className="mb-4">
                         {post.topics.map(topic=> {
-                            return <span className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-2" key={topic.id}>{topic.name}</span>
+                            return <span className="inline-block bg-green-900 bg-opacity-10 text-gray-800 text-xs px-2 py-1 rounded mr-2 mb-2" key={topic.id}>{topic.name}</span>
                         })}
                     </div>
                     <div className="text-sm text-gray-600">
-                        <p>{post.comment_count} comments</p>
+                        {post.comment_count === 1 ? <p>{post.comment_count} comment</p> : <p>{post.comment_count} comments</p>}
+                        
                     </div>
                 </div>
             </section>
