@@ -35,24 +35,23 @@ function Home() {
         <div
             className="relative flex flex-col items-center justify-center text-white"
             style={{
-                height: '3.5in',
+                height: '8.5in',
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
         }}>
             <div className="font-arsenal text-8xl">welcome to the Society</div>
             <button 
-                className="text-white text-xs mt-4 px-8 py-2 border hover:bg-green-900 hover:border-green-900 transition duration-300"
+                className="text-white text-xs mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-900 hover:border-green-900 transition duration-300"
                 onClick={() => {navigate('/posts/new')}}>
             START A DISCUSSION
             </button>
         </div>
 
-        <div className="flex justify-end">
-            <Filter onFilterChange={handleFilterChange}/>
+        <div className="flex justify-end p-4 pt-4">
         </div>
 
-        <div className="flex flex-row">
+        <div className="flex flex-row p-4">
             <div className="w-1/5 p-4 mt-4 bg-gray-100 rounded-lg shadow self-start">
                 <h3 className="text-xl mb-4">Discussion Board Topics</h3>
                 {topics.map(topic => {
@@ -60,6 +59,9 @@ function Home() {
                 })}
             </div>
             <div className="w-4/5 p-4">
+                <div className="mb-4">
+                    <Filter onFilterChange={handleFilterChange}/>
+                </div>
                 {posts.map(post => {
                     return <PostListObject post={post} key={post.id}/>
                 })}
