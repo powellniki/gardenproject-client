@@ -30,14 +30,14 @@ function Home() {
     };
 
     return (
-      <main className='text-slate-900 p-4'>
+      <main className='text-slate-900 p-8'>
         <div className="flex justify-between items-center">
             <h1 className="text-8xl font-handwriting text-green-100 pl-28 pb-8"></h1>
             <div className="flex-1"></div>
             <div className="mt-20">
                 <Filter onFilterChange={handleFilterChange}/>
                 <button 
-                    className="bg-amber-500 text-white px-2 py-1 mr-4 rounded hover:bg-amber-600 transition duration-300"
+                    className="bg-green-600 text-white px-2 py-1 mr-4 rounded hover:bg-green-800 transition duration-300"
                     onClick={() => {navigate('/posts/new')}}>
                 SPROUT A CONVERSATION
                 </button>
