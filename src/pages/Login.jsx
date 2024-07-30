@@ -48,36 +48,36 @@ export const Login = () => {
 
             <section className="flex flex-col bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1 className="text-4xl mt-7 mb-3 font-header text-center text-green-900">the Greenhouse Society</h1>
-                    <h2 className="text-xl mb-10 text-center text-gray-700">Please sign in</h2>
+                    <h1 className="text-5xl mt-7 mb-3 font-arsenal text-center text-green-900">the Greenhouse Society</h1>
+                    <h2 className="text-sm mb-10 text-center text-gray-700">please sign in</h2>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputUsername" className="block text-gray-700"> Username </label>
+                        <label htmlFor="inputUsername" className="block text-gray-700"></label>
                         <input type="username" id="inputUsername"
                             value={username}
                             onChange={evt => setUsername(evt.target.value)}
-                            className="form-control w-full p-2 border border-gray-300 rounded mt-2"
-                            placeholder="Username"
+                            className="form-control w-full p-5 border border-gray-300 rounded mt-2"
+                            placeholder="username"
                             required autoFocus
                         />
                     </fieldset>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputPassword" className="block text-gray-700"> Password </label>
+                        <label htmlFor="inputPassword" className="block text-gray-700"></label>
                         <input type="password" id="inputPassword"
                             value={password}
                             onChange={evt => setPassword(evt.target.value)}
-                            className="form-control w-full p-2 border border-gray-300 rounded mt-2"
-                            placeholder="Password"
+                            className="form-control w-full p-5 border border-gray-300 rounded mt-2"
+                            placeholder="password"
                         />
                     </fieldset>
                     <fieldset>
-                        <button type="submit" className="w-full p-3 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition duration-300">
+                        <button type="submit" className="w-full p-2 mt-2 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition duration-300">
                             Sign in
                         </button>
                     </fieldset>
                 </form>
                 <div className="loginLinks text-center mt-6">
                     <section className="link--register">
-                        <Link className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" to="/register">Not a member yet?</Link>
+                        <Link className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" to="/register">not a member yet?</Link>
                     </section>
                 </div>
             </section>
