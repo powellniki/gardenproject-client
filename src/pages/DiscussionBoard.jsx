@@ -23,7 +23,7 @@ export const DiscussionBoard = () => {
             <section className="p-4 mb-4">
 
                 <div className="flex justify-between items-center">
-                    <h1 className="text-8xl font-header text-green-100 pl-28 pb-8">{topicName}</h1>
+                    <h1 className="text-4xl font-arsenal text-green-100 mb-4 mt-20 pl-20">{topicName}</h1>
                     <div className="flex justify-end mb-4 mt-20">
                         <button 
                             className="bg-amber-500 text-white px-8 py-2 mr-4 rounded hover:bg-amber-600 transition duration-300"
