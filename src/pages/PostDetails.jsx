@@ -100,9 +100,9 @@ export const PostDetails = () => {
                 <div>
                     {currentUser.id === post.gardener?.userId ? <div className="flex justify-end space-x-1 mb-4">
                         <Link to={`/posts/${post.id}/edit`}>
-                            <button className="bg-blue-500 text-white text-xs px-4 py-2 rounded hover:bg-blue-600 transition duration-300 w-20">EDIT</button>
+                            <button className="bg-blue-900 text-white text-xs px-4 py-2 rounded hover:bg-blue-600 transition duration-300 w-20">EDIT</button>
                         </Link>
-                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-red-500 text-white text-xs px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
+                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-red-900 text-white text-xs px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
                         </div> : "" }
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export const PostDetails = () => {
                     <div className="mt-4">
                         <textarea type="text" id="comment" name="comment" value={input} onChange={e => setInput(e.target.value)} className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Add a comment..."></textarea>
                         <div className="flex justify-end">
-                            <button onClick={handleSubmitComment} className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
+                            <button onClick={handleSubmitComment} className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition duration-300">
                                 + COMMENT
                             </button>
                         </div>

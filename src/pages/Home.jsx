@@ -37,7 +37,7 @@ function Home() {
             <div className="mt-20">
                 <Filter onFilterChange={handleFilterChange}/>
                 <button 
-                    className="bg-green-600 text-white px-2 py-1 mr-4 rounded hover:bg-green-800 transition duration-300"
+                    className="bg-green-700 text-white px-2 py-1 mr-4 rounded hover:bg-green-800 transition duration-300"
                     onClick={() => {navigate('/posts/new')}}>
                 SPROUT A CONVERSATION
                 </button>
