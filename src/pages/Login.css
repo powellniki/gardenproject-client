@@ -20,15 +20,15 @@ fieldset {
     display: inline-block;
     margin: 0 auto;
     text-align: left;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 0rem;
     z-index: 1;
     min-height: 25rem;
     min-width: 35rem;
 }
 
-.form--login > fieldset > input {
+/* .form--login > fieldset > input {
     width: 25em;
-}
+} */
 
 .label--login {
     width: 8rem;

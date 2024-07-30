@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import backgroundImage from '../assets/greenhouse.jpg'
 import "./Login.css"
 
 export const Login = () => {
@@ -28,47 +29,58 @@ export const Login = () => {
             })
     }
 
+    const loginStyle = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
     return (
-        <main className="container--login">
+        <main style={loginStyle} className="container--login">
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
 
-            <section>
+            <section className="flex flex-col bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1 className="text-4xl mt-7 mb-3">Rooted</h1>
-                    <h2 className="text-xl mb-10">Please sign in</h2>
+                    <h1 className="text-4xl mt-7 mb-3 font-header text-center text-green-900">the Greenhouse Society</h1>
+                    <h2 className="text-xl mb-10 text-center text-gray-700">Please sign in</h2>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputUsername"> Username </label>
+                        <label htmlFor="inputUsername" className="block text-gray-700"> Username </label>
                         <input type="username" id="inputUsername"
                             value={username}
                             onChange={evt => setUsername(evt.target.value)}
-                            className="form-control"
+                            className="form-control w-full p-2 border border-gray-300 rounded mt-2"
                             placeholder="Username"
-                            required autoFocus />
+                            required autoFocus
+                        />
                     </fieldset>
                     <fieldset className="mb-4">
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label htmlFor="inputPassword" className="block text-gray-700"> Password </label>
                         <input type="password" id="inputPassword"
                             value={password}
                             onChange={evt => setPassword(evt.target.value)}
-                            className="form-control"
+                            className="form-control w-full p-2 border border-gray-300 rounded mt-2"
                             placeholder="Password"
                         />
                     </fieldset>
                     <fieldset>
-                        <button type="submit" className="button p-3 rounded-md bg-blue-800 text-blue-100">
+                        <button type="submit" className="w-full p-3 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition duration-300">
                             Sign in
                         </button>
                     </fieldset>
                 </form>
+                <div className="loginLinks text-center mt-6">
+                    <section className="link--register">
+                        <Link className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" to="/register">Not a member yet?</Link>
+                    </section>
+                </div>
             </section>
-            <div className="loginLinks">
-                <section className="link--register">
-                    <Link className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" to="/register">Not a member yet?</Link>
-                </section>
-            </div>
         </main>
     )
 }
