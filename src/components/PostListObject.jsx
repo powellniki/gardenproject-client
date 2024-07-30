@@ -6,9 +6,9 @@ export const PostListObject = ({post}) => {
 
     return (
         <Link to={`/posts/${post.id}`}>
-            <section className="border border-gray-300 p-4 mb-4 bg-white hover:bg-gray-50 transition duration-300">
-                <div>
-                    <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+            <section className="border border-gray-300 p-4 mb-4 bg-white shadow-xl rounded hover:bg-gray-50 transition duration-300">
+                <div className="p-2">
+                    <h2 className="text-2xl font-semibold mt-2 mb-2">{post.title}</h2>
                     <div className="text-sm text-gray-500 flex justify-between mb-2">
                         <span className="">Posted By: {post.gardener?.username}</span>
                         <span className="">{new Date(post.created_date).toLocaleDateString()}</span>

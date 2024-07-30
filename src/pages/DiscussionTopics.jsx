@@ -19,7 +19,7 @@ export const DiscussionTopics = () => {
             <div
                 className="relative flex flex-col items-center justify-center text-white"
                 style={{
-                    height: '3in',
+                    height: '4in',
                     backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
