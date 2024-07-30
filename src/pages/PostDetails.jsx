@@ -100,9 +100,9 @@ export const PostDetails = () => {
                 <div>
                     {currentUser.id === post.gardener?.userId ? <div className="flex justify-end space-x-1 mb-4">
                         <Link to={`/posts/${post.id}/edit`}>
-                            <button className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-green-900 transition duration-300 w-20">EDIT</button>
+                            <button className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-400 transition duration-300 w-20">EDIT</button>
                         </Link>
-                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-green-900 transition duration-300">DELETE</button>
+                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-gray-400 transition duration-300">DELETE</button>
                         </div> : "" }
                 </div>
                 <div>
