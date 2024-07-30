@@ -52,7 +52,7 @@ function Home() {
         </div>
 
         <div className="flex flex-row p-4">
-            <div className="w-1/5 p-4 mt-4 bg-green-950 rounded shadow self-start">
+            <div className="w-1/5 p-4 mt-4 bg-green-950 shadow self-start">
                 <h3 className="font-arsenal text-2xl text-white mb-2">discussion Board Topics</h3>
                 {topics.map(topic => {
                     return <div className="mb-2 p-1 text-sm text-white" key={topic.name}>{topic.name}</div>
