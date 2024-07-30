@@ -21,9 +21,9 @@ export const NavBar = () => {
     return (
         <nav className="navbar flex justify-between items-center p-4 mr-8">
             <div>
-                <p className="font-arsenal text-5xl text-green-900">the Greenhouse Society</p>
+                <p className="font-arsenal text-4xl text-green-900">the Greenhouse Society</p>
             </div>
-            <ul className="flex space-x-20 font-arsenal text-2xl">
+            <ul className="flex space-x-20 font-arsenal text-xl">
                 <li className="navbar__item top-level">
                     <NavLink className="text-green-900" to={"/"}>home</NavLink>
                 </li>
