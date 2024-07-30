@@ -79,7 +79,7 @@ export const PostDetails = () => {
     return (
         <div className="container mx-auto p-4">
             <section className="border border-gray-300 rounded-lg p-12 m-4 bg-white shadow">
-                <h1 className="text-5xl font-semibold mb-8">{post.title}</h1>
+                <h1 className="text-4xl font-arsenal font-semibold mb-8">{post.title}</h1>
                 <div className="text-sm text-gray-500 flex justify-between mb-4">
                     <h3 className="text-lg">@{post.gardener?.username}</h3>
                     <p>{new Date(post.created_date).toLocaleDateString()}</p>
@@ -100,13 +100,13 @@ export const PostDetails = () => {
                 <div>
                     {currentUser.id === post.gardener?.userId ? <div className="flex justify-end space-x-1 mb-4">
                         <Link to={`/posts/${post.id}/edit`}>
-                            <button className="bg-blue-900 text-white text-xs px-4 py-2 rounded hover:bg-blue-600 transition duration-300 w-20">EDIT</button>
+                            <button className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-green-900 transition duration-300 w-20">EDIT</button>
                         </Link>
-                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-red-900 text-white text-xs px-4 py-2 rounded hover:bg-red-600 transition duration-300">DELETE</button>
+                        <button onClick={() => {handleDeletePost(post.id)}} className="bg-gray-200 text-black text-xs px-4 py-2 rounded hover:bg-green-900 transition duration-300">DELETE</button>
                         </div> : "" }
                 </div>
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Comments:</h3>
+                    <h3 className="text-2xl font-arsenal mb-2">Comments:</h3>
                     {comments.map(comment => {
                         return (
                             <div className="mb-4 border-t border-gray-200 pt-2" key={comment.id}>
