@@ -42,7 +42,7 @@ function Home() {
         }}>
             <div className="font-arsenal text-8xl">welcome to the Society</div>
             <button 
-                className="text-white text-sm mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-900 hover:border-transparent transition duration-300"
+                className="text-white text-sm mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent transition duration-300"
                 onClick={() => {navigate('/posts/new')}}>
             START A DISCUSSION
             </button>
