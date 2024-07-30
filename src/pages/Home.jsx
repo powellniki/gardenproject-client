@@ -52,10 +52,10 @@ function Home() {
         </div>
 
         <div className="flex flex-row p-4">
-            <div className="w-1/5 p-4 mt-4 bg-green-950 shadow self-start">
-                <h3 className="font-arsenal text-2xl text-white mb-2">discussion Board Topics</h3>
+            <div className="w-1/5 p-4 mt-4 bg-gray-900 shadow-lg rounded self-start flex flex-col">
+                <h3 className="font-arsenal text-3xl text-white mb-2 p-2">discussion Topics</h3>
                 {topics.map(topic => {
-                    return <Link to={`/discussion/topics/${topic.id}`} key={topic.id} ><div className="mb-2 p-1 text-sm text-white" key={topic.name}>{topic.name}</div></Link>
+                    return <Link to={`/discussion/topics/${topic.id}`} key={topic.id} ><div className="p-3 mt-2 bg-gray-900 text-white rounded-lg hover:bg-green-900 hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-md" key={topic.name}>{topic.name}</div></Link>
                 })}
             </div>
             <div className="w-4/5 p-4">
