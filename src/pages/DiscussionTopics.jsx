@@ -37,7 +37,7 @@ export const DiscussionTopics = () => {
                                 to={`/discussion/topics/${topic.id}`} 
                                 key={topic.id} 
                                 state={{ topicName: topic.name }}
-                                className="flex justify-center items-center bg-gray-100 p-4 shadow hover:bg-gray-200 transition duration-300">
+                                className="flex justify-center items-center text-green-950 p-4 shadow rounded border-green-950 hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent hover:text-white transition duration-300">
                             {topic.name}
                         </Link>
                 })}

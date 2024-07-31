@@ -102,7 +102,7 @@ export const EditGardenerProfile = () => {
             <fieldset className="flex justify-end">
                 <button 
                     type="submit"
-                    className="bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300"
+                    className="text-green-950 text-sm mt-4 px-8 py-2 border border-green-950 hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent hover:text-white transition duration-300"
                 >
                     Fertilize Changes
                 </button>
