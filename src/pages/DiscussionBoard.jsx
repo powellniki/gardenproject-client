@@ -3,12 +3,14 @@ import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { getPostByTopicId } from "../data/posts.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
 import backgroundImage from '../assets/greenhouse.jpg'
+import { getTopicByTopicId } from "../data/topics.jsx"
 
 
 export const DiscussionBoard = () => {
     const [posts, setPosts] = useState([])
-    const location = useLocation();
-    const { topicName } = location.state || {};
+    const [topic, setTopic] = useState("")
+    // const location = useLocation();
+    // const { topicName } = location.state || {};
 
     const { topicId } = useParams()
     const navigate = useNavigate()
@@ -16,7 +18,10 @@ export const DiscussionBoard = () => {
     useEffect(() => {
         getPostByTopicId(topicId).then(postData => {
             setPosts(postData)
-        }) 
+        })
+        getTopicByTopicId(topicId).then(topicData => {
+            setTopic(topicData)
+        })
     }, [])
 
     return (
@@ -29,7 +34,7 @@ export const DiscussionBoard = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
             }}>
-                <div className="font-arsenal text-6xl">{topicName}</div>
+                <div className="font-arsenal text-6xl">{topic.name}</div>
                 <button 
                     className="text-white text-sm mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent transition duration-300"
                     onClick={() => {navigate('/posts/new')}}>
