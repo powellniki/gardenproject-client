@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 export const NavBar = () => {
     const [currentUser, setCurrentUser] = useState("")
+    const [dropdownOpen, setDropdownOpen] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -12,40 +13,69 @@ export const NavBar = () => {
         setCurrentUser(localUserObject)
     }, [])
 
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen)
+    }
+
 
     return (
-        <ul className="navbar p-5">
+        <nav className="navbar flex justify-between items-center p-4 mr-8">
             <div>
-                
+                <p className="font-arsenal text-4xl text-green-900">the Greenhouse Society</p>
             </div>
-            <li className="navbar__item">
-                <NavLink className="text-green-300 hover:text-green-100" to={"/"}>All Posts</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-green-300 hover:text-green-100" to={"/discussion/topics"}>Discussion Boards</NavLink>
-            </li>
-            <li className="navbar__item">
-                <NavLink className="text-green-300 hover:text-green-100" to={`/profile/${currentUser.id}`}>My Profile</NavLink>
-            </li>
-            {
-                (localStorage.getItem("garden_token") !== null) ?
-                    <li className="navbar__item">
-                        <button className="text-green-300 hover:text-green-100"
-                            onClick={() => {
-                                localStorage.removeItem("garden_token")
-                                /* update state */
-                                navigate('/login')
-                            }}
-                        >Logout</button>
-                    </li> :
-                    <>
-                        <li className="navbar__item">
-                            <NavLink className="text-green-300 hover:text-green-100" to={"/login"}>Login</NavLink>
-                        </li>
-                        <li className="navbar__item">
-                            <NavLink className="text-green-300 hover:text-green-100" to={"/register"}>Register</NavLink>
-                        </li>
-                    </>
-            }        </ul>
+            <ul className="flex space-x-20 font-arsenal text-xl">
+                <li className="navbar__item top-level">
+                    <NavLink className="text-green-900" to={"/"}>home</NavLink>
+                </li>
+                <li className="navbar__item top-level">
+                    <NavLink className="text-green-900" to={"/discussion/topics"}>boards</NavLink>
+                </li>
+                <li className="navbar__item relative top-level">
+                    <button
+                        className="text-green-900"
+                        onClick={toggleDropdown}
+                    >
+                        user
+                    </button>
+                    {dropdownOpen && (
+                        <div className="absolute right-0 w-44 px-2 py-2 bg-white text-gray-800 rounded-sm shadow-lg z-20">
+                            <NavLink
+                                to={`/profile/${currentUser.id}`}
+                                className="block w-full hover:bg-gray-100 no-underline"
+                                onClick={() => setDropdownOpen(false)}
+                            >
+                                profile
+                            </NavLink>
+                            <NavLink
+                                to={`/profile/${currentUser.id}/edit`}
+                                className="block w-full hover:bg-gray-100 no-underline"
+                                onClick={() => setDropdownOpen(false)}
+                            >
+                                edit profile
+                            </NavLink>
+                        </div>
+                    )}
+                </li>
+                {
+                    (localStorage.getItem("garden_token") !== null) ?
+                        <li className="navbar__item top-level">
+                            <button className="text-green-900"
+                                onClick={() => {
+                                    localStorage.removeItem("garden_token")
+                                    navigate('/login')
+                                }}
+                            >logout</button>
+                        </li> :
+                        <>
+                            <li className="navbar__item top-level">
+                                <NavLink className="text-green-900" to={"/login"}>Login</NavLink>
+                            </li>
+                            <li className="navbar__item top-level">
+                                <NavLink className="text-green-900" to={"/register"}>Register</NavLink>
+                            </li>
+                        </>
+                }
+            </ul>
+        </nav>
     )
 }

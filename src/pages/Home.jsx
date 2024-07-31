@@ -3,7 +3,8 @@ import { getPosts } from "../data/posts.jsx"
 import { getTopics } from "../data/topics.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
 import { Filter } from "../components/Filter.jsx"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import backgroundImage from '../assets/greenhouse.jpg'
 
 
 
@@ -30,27 +31,38 @@ function Home() {
     };
 
     return (
-      <main className='text-slate-900 p-4'>
-        <div className="flex justify-between items-center">
-            <h1 className="text-8xl font-header text-green-100 pl-28 pb-8">the greenhouse society</h1>
-            <div className="flex-1"></div>
-            <div className="mt-20">
-                <Filter onFilterChange={handleFilterChange}/>
-                <button 
-                    className="bg-amber-500 text-white px-2 py-1 mr-4 rounded hover:bg-amber-600 transition duration-300"
-                    onClick={() => {navigate('/posts/new')}}>
-                SPROUT A CONVERSATION
-                </button>
-            </div>
+      <main className='text-slate-900'>
+        <div
+            className="relative flex flex-col items-center justify-center text-white"
+            style={{
+                height: '8.5in',
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+        }}>
+            <div className="font-arsenal text-8xl">welcome to the Society</div>
+            <button 
+                className="text-white text-sm mt-4 px-8 py-2 border hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent transition duration-300"
+                onClick={() => {navigate('/posts/new')}}>
+            START A DISCUSSION
+            </button>
         </div>
-        <div className="flex flex-row">
-            <div className="w-1/5 p-4 mt-4 bg-gray-100 rounded-lg shadow self-start">
-                <h3 className="text-xl mb-4">Discussion Board Topics</h3>
+
+        <div className="flex justify-end p-4 pt-4">
+        </div>
+
+        <div className="flex flex-row p-4">
+            <div className="w-1/5 p-4 mt-4 bg-gray-900 shadow-lg rounded self-start flex flex-col">
+                <h3 className="font-arsenal text-3xl text-white mb-2 p-2">discussion Topics</h3>
                 {topics.map(topic => {
-                    return <div className="mb-2 p-1 text-sm" key={topic.name}>{topic.name}</div>
+                    return <Link to={`/discussion/topics/${topic.id}`} key={topic.id} ><div className="p-3 mt-2 bg-gray-900 text-white rounded-lg hover:bg-green-900 hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out shadow-md" key={topic.name}>{topic.name}</div></Link>
                 })}
             </div>
             <div className="w-4/5 p-4">
+                <div className="mb-4 flex justify-between">
+                    <h2 className="font-arsenal text-3xl pl-4 text-green-900">all Posts</h2>
+                    <Filter onFilterChange={handleFilterChange}/>
+                </div>
                 {posts.map(post => {
                     return <PostListObject post={post} key={post.id}/>
                 })}

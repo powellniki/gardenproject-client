@@ -137,8 +137,8 @@ export const NewDiscussionForm = () => {
                     <div className="flex justify-end mt-4">
                         <button 
                             onClick={handleSubmit}
-                            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">
-                            Plant It
+                            className="text-green-950 text-SM mt-4 px-8 py-2 border border-green-950 hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent hover:text-white transition duration-300">
+                            SUBMIT
                         </button>
                     </div>
                 </fieldset>

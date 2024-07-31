@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { getGardenerById } from "../data/gardeners.jsx"
 import { getPostByGardenerId } from "../data/posts.jsx"
 import { PostListObject } from "../components/PostListObject.jsx"
+import backgroundImage from '../assets/greenhouse.jpg'
 
 
 export const GardenerProfile = () => {
@@ -35,12 +36,24 @@ export const GardenerProfile = () => {
 
 
     return (
-        <section className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 mt-6">
-            <div className="flex justify-between items-center mb-8">
+        <section className="mx-auto shadow-md rounded-lg">
+            <div
+                className="relative flex flex-col items-center justify-center text-white"
+                style={{
+                    height: '4in',
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+            }}>
+            </div>
+            <div className="relative flex justify-start items-center mt-12 ml-12">
+                <div className="absolute -top-40 w-40 h-40 border-4 border-white rounded-full overflow-hidden">
+                    <img alt="Profile" className="w-full h-full object-cover" src={gardenerInfo.image}/>
+                </div>
+            </div>
+
+            <div className="flex justify-between items-center mb-8 ml-16 mt-4">
                 <div className="flex flex-col items-start space-y-4">
-                    <div className="w-24 h-24">
-                        <img alt="Profile" className="rounded-full w-full h-full object-cover" src={gardenerInfo.image}/>
-                    </div>
                     <div className="text-2xl font-bold text-gray-800">
                         <>@{gardenerInfo.username}</>
                     </div>
@@ -52,18 +65,19 @@ export const GardenerProfile = () => {
                     </div>
                     {currentUser.id === gardenerInfo.userId ? 
                         <Link to={`/profile/${currentUser.id}/edit`}>
-                            <button className="bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300">
+                            <button className="text-green-950 text-sm mt-4 px-8 py-2 border border-green-950 hover:bg-opacity-70 hover:bg-green-950 hover:border-transparent hover:text-white transition duration-300">
                                 EDIT PROFILE
                             </button> 
                         </Link>
                         : "" }
                 </div>
-                <div className="flex flex-col items-center justify-center bg-gray-100 py-4 px-6 rounded-lg shadow-inner">
+                <div className="flex flex-col items-center justify-center bg-gray-100 py-4 px-6 mr-24 rounded-lg shadow-inner">
                     <div className="text-3xl font-semibold text-gray-800">{posts.length}</div>
                     <p className="text-gray-600">posts</p>
                 </div>
             </div>
-            <div className="space-y-6">
+
+            <div className="space-y-6 pl-8 pr-8">
                 {posts.map(post => {
                     return <PostListObject post={post} key={post.id}/>
                 })}
