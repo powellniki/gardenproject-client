@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://gardenapi-app-8s8tg.ondigitalocean.app';
 
 export const getCommentsByPostId = async (postId) => {
     const url = `${API_URL}/comments?post=${postId}`
