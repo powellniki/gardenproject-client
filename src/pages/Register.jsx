@@ -13,7 +13,7 @@ export const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        fetch(`https://gardenapi-app-8s8tg.ondigitalocean.app/register`, {
+        fetch(`http://127.0.0.1:8000/register`, {
             method: "POST",
             body: JSON.stringify({
                 username,
