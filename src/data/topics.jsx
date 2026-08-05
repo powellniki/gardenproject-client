@@ -1,4 +1,4 @@
-const API_URL = 'https://gardenapi-app-8s8tg.ondigitalocean.app';
+const API_URL = 'http://127.0.0.1:8000';
 
 export const getTopics = async () => {
     try {
